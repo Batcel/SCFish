@@ -475,7 +475,9 @@ public enum GameRecordMsgState
             }            moments_.ShowFriendsMoments();
 
             if (contestui_ != null)
-                contestui_.SetActive(false);        }    }    void onClickShopBtn(EventTriggerType eventtype, object button, PointerEventData eventData)    {        if (eventtype == EventTriggerType.PointerClick)        {            CustomAudio.GetInstance().PlayCustomAudio(1002);            if (shop == null)            {                shop = new Shop(CanvasObj);                shop.InitShopUI();            }            shop.OpenOrCloseShopMainUI(true);        }    }    bool BackCharge(uint _msgType, UMessage _ms)    {        BackRecharge brc = new BackRecharge();        brc.ReadData(_ms);        Debug.Log("charge!!!!!!!!!!!!!!!!!!!");        if (brc.nCoin > 0)        {            //Text coin = mainui_.transform.FindChild("PanelHead_").            //    FindChild("Image_coinframe").FindChild("Text_Coin").gameObject.GetComponent<Text>();            //coin.text = brc.nCoin.ToString();        }        if (brc.nDia > 0)        {            Text diamond = mainui_.transform.Find("PanelHead_").                Find("Image_DiamondFrame").Find("Text_Diamond").gameObject.GetComponent<Text>();            diamond.text = (brc.nDia + brc.nCoin).ToString();        }        return false;    }    bool BackGmTool(uint _msgType, UMessage _ms)    {        BackGmToolAddItem btai = new BackGmToolAddItem();        btai.ReadData(_ms);        PlayerObj.GetPlayerData().SetCoin (btai.coin);        PlayerObj.GetPlayerData().SetPlayerID(btai.accountID);        PlayerObj.GetPlayerData().SetVipLv(btai.level);        PlayerObj.GetPlayerData().SetDiamond(btai.diamond);        RefreshPlayerCurrency();        return false;    }    public Player GetPlayer()    {        return PlayerObj;    }    public PlayerData GetPlayerData()    {        return PlayerObj.GetPlayerData();    }    public uint GetPlayerId()    {
+                contestui_.SetActive(false);        }    }    void onClickShopBtn(EventTriggerType eventtype, object button, PointerEventData eventData)    {        if (eventtype == EventTriggerType.PointerClick)        {            CustomAudio.GetInstance().PlayCustomAudio(1002);            if (shop == null)            {                shop = new Shop(CanvasObj);                shop.InitShopUI();            }            shop.OpenOrCloseShopMainUI(true);        }    }    bool BackCharge(uint _msgType, UMessage _ms)    {        BackRecharge brc = new BackRecharge();        brc.ReadData(_ms);        Debug.Log("charge!!!!!!!!!!!!!!!!!!!");        if (brc.nCoin > 0)        {            //Text coin = mainui_.transform.FindChild("PanelHead_").            //    FindChild("Image_coinframe").FindChild("Text_Coin").gameObject.GetComponent<Text>();            //coin.text = brc.nCoin.ToString();        }        if (brc.nDia > 0)        {            Text diamond = mainui_.transform.Find("PanelHead_").
+                Find("Image_DiamondFrame").Find("Text_Diamond").gameObject.GetComponent<Text>();
+            diamond.text = (brc.nDia + brc.nCoin).ToString();        }        return false;    }    bool BackGmTool(uint _msgType, UMessage _ms)    {        BackGmToolAddItem btai = new BackGmToolAddItem();        btai.ReadData(_ms);        PlayerObj.GetPlayerData().SetCoin (btai.coin);        PlayerObj.GetPlayerData().SetPlayerID(btai.accountID);        PlayerObj.GetPlayerData().SetVipLv(btai.level);        PlayerObj.GetPlayerData().SetDiamond(btai.diamond);        RefreshPlayerCurrency();        return false;    }    public Player GetPlayer()    {        return PlayerObj;    }    public PlayerData GetPlayerData()    {        return PlayerObj.GetPlayerData();    }    public uint GetPlayerId()    {
         return GetPlayerData().GetPlayerID();    }    bool LoginSerDisConnect(uint _msgType, UMessage _ms)
     {
         Debug.Log("Login server is disconnect, Please try again later!");
@@ -1001,7 +1003,8 @@ public enum GameRecordMsgState
     /// <summary>    /// 更新异步加载场景进度条    /// </summary>    private void UpdateAsyncLoadSceneProcess()    {        if (aAsyncSceneOperation == null)
             return;        if (aAsyncSceneOperation.progress < 0.9f)            fAsyncLoadProgress = aAsyncSceneOperation.progress;        else            fAsyncLoadProgress += 0.11f;
 
-        if (gCurDisplayLoadSceneProgressUI != null)        {            Image processbar = gCurDisplayLoadSceneProgressUI.transform.Find("ImageStripBG").Find("ImageStrip").gameObject.GetComponent<Image>();            processbar.fillAmount = fAsyncLoadProgress;        }        if (fAsyncLoadProgress > 1f)        {            isAsyncLoadScene = false;
+        if (gCurDisplayLoadSceneProgressUI != null)        {            Image processbar = gCurDisplayLoadSceneProgressUI.transform.Find("ImageStripBG").Find("ImageStrip").gameObject.GetComponent<Image>();
+            processbar.fillAmount = fAsyncLoadProgress;        }        if (fAsyncLoadProgress > 1f)        {            isAsyncLoadScene = false;
             //Debug.Log("AsyncSceneOperation.progress:" + fAsyncLoadProgress);           
             //ScreneLoadFinishCallBack(sAsyncLoadSceneName);
             aAsyncSceneOperation.allowSceneActivation = true;
@@ -1187,17 +1190,17 @@ public enum GameRecordMsgState
 
         }        else        {            gCurDisplayLoadSceneProgressUI = GameObject.Find("Canvas/Root").transform.Find("Main_Loading").gameObject;
         }
-        if (Screen.orientation == ScreenOrientation.Portrait)
-        {
-            //设置屏幕自动旋转， 并置支持的方向
-            Screen.orientation = ScreenOrientation.Landscape;//如果屏幕是竖屏,则立刻旋转至横屏
-            Screen.autorotateToLandscapeLeft = true;
-            Screen.autorotateToLandscapeRight = true;
-            Screen.autorotateToPortrait = false;
-            Screen.autorotateToPortraitUpsideDown = false;
-            Screen.orientation = ScreenOrientation.AutoRotation;
-            RefreshCanvasScaler(new Vector3(1134, 750));
-        }        if (isgameBack)
+        //if (Screen.orientation == ScreenOrientation.Portrait)
+        //{
+        //    //设置屏幕自动旋转， 并置支持的方向
+        //    Screen.orientation = ScreenOrientation.Landscape;//如果屏幕是竖屏,则立刻旋转至横屏
+        //    Screen.autorotateToLandscapeLeft = true;
+        //    Screen.autorotateToLandscapeRight = true;
+        //    Screen.autorotateToPortrait = false;
+        //    Screen.autorotateToPortraitUpsideDown = false;
+        //    Screen.orientation = ScreenOrientation.AutoRotation;
+        //    RefreshCanvasScaler(new Vector3(1134, 750));
+        //}        if (isgameBack)
             SetRandomLoadingTipsText(gCurDisplayLoadSceneProgressUI.transform);    }
 
     //加载大厅场景
@@ -1467,7 +1470,12 @@ public enum GameRecordMsgState
     //切换游戏场景
     void SwitchGameScene(string abname, string scenename, GameKind_Enum gameid, GameTye_Enum gameType = GameTye_Enum.GameType_Normal, UnityAction callback = null)
     {        if (isAsyncLoadScene)            return;        GameMain.SC(LoadGameScene(abname, scenename, gameid, gameType, callback));
-    }    void SwithGameStateToLogin()    {        if (enGameState == GameState_Enum.GameState_Luancher)        {            enGameState = GameState_Enum.GameState_Login;            SwitchToHallScene(false);
+    }    void SwithGameStateToLogin()    {        if (enGameState == GameState_Enum.GameState_Luancher)        {            enGameState = GameState_Enum.GameState_Login;
+
+
+#if ScFish            CLoginUI.Instance.IntoLoginProcess();
+#else            SwitchToHallScene(false);
+#endif
         }    }    void SetMainUIData(GameObject root, bool needicon = true)    {        if(needicon)
         {
             GameObject IconBtn = root.transform.Find("PanelHead_").Find("Image_HeadBG").Find("Image_HeadFrame").gameObject;
@@ -1486,7 +1494,8 @@ public enum GameRecordMsgState
             diamond.text = (GetPlayerData().GetDiamond() + GetPlayerData().GetCoin()).ToString();
 
             RefreshPlayerVipText();
-        }        else
+        }
+        else
         {
             Text diamond = root.transform.Find("PanelHead_").Find("Image_DiamondFrame").Find("Text_Diamond").gameObject.GetComponent<Text>();
             diamond.text = GetPlayerData().GetDiamond().ToString();
@@ -1495,7 +1504,8 @@ public enum GameRecordMsgState
         //Text Lotterytext = root.transform.FindChild("PanelHead_/Image_TicketFrame/Text_Ticket").gameObject.GetComponent<Text>();
         //Lotterytext.text = GetPlayerData().GetLottery().ToString();
 
-        GameObject diamondBtn = root.transform.Find("PanelHead_").Find("Image_DiamondFrame").gameObject;        XPointEvent.AutoAddListener(diamondBtn, Charge, Shop.SHOPTYPE.SHOPTYPE_DIAMOND);        //GameObject coinBtn = root.transform.FindChild("PanelHead_").FindChild("Image_coinframe").gameObject;        //XPointEvent.AutoAddListener(coinBtn, Charge, Shop.SHOPTYPE.SHOPTYPE_COIN);
+        GameObject diamondBtn = root.transform.Find("PanelHead_").Find("Image_DiamondFrame").gameObject;
+        XPointEvent.AutoAddListener(diamondBtn, Charge, Shop.SHOPTYPE.SHOPTYPE_DIAMOND);        //GameObject coinBtn = root.transform.FindChild("PanelHead_").FindChild("Image_coinframe").gameObject;        //XPointEvent.AutoAddListener(coinBtn, Charge, Shop.SHOPTYPE.SHOPTYPE_COIN);
 
         //GameObject lotteryBtn = root.transform.FindChild("PanelHead_").FindChild("Image_TicketFrame").gameObject;        //XPointEvent.AutoAddListener(lotteryBtn, Charge, Shop.SHOPTYPE.SHOPTYPE_EXCHANGE);
 
@@ -1574,7 +1584,10 @@ public enum GameRecordMsgState
         GameObject joinBtn = roomsui_.transform.Find("middle").Find("Button_jiaru").gameObject;
         XPointEvent.AutoAddListener(joinBtn, OnJoinRooms, null);
 
-        GameObject diamondBtn = roomsui_.transform.Find("Top").Find("Image_DiamondFrame").gameObject;        XPointEvent.AutoAddListener(diamondBtn, Charge, Shop.SHOPTYPE.SHOPTYPE_DIAMOND);        //GameObject coinBtn = roomsui_.transform.FindChild("Top").FindChild("Image_coinframe").gameObject;        //XPointEvent.AutoAddListener(coinBtn, Charge, Shop.SHOPTYPE.SHOPTYPE_COIN);
+        GameObject diamondBtn = roomsui_.transform.Find("Top").Find("Image_DiamondFrame").gameObject;
+        XPointEvent.AutoAddListener(diamondBtn, Charge, Shop.SHOPTYPE.SHOPTYPE_DIAMOND);
+        //GameObject coinBtn = roomsui_.transform.FindChild("Top").FindChild("Image_coinframe").gameObject;
+        //XPointEvent.AutoAddListener(coinBtn, Charge, Shop.SHOPTYPE.SHOPTYPE_COIN);
 
         //GameObject recordBtn = roomsui_.transform.FindChild("middle").FindChild("Button_record").gameObject;
         //XPointEvent.AutoAddListener(recordBtn, OnClickAppointmentRecord, null);
@@ -1638,11 +1651,22 @@ public enum GameRecordMsgState
 
     private void OnCreateRooms(EventTriggerType eventtype, object button, PointerEventData eventData)    {        if (eventtype == EventTriggerType.PointerClick)        {
             CustomAudio.GetInstance().PlayCustomAudio(1002);
-            GameObject createPanel = roomsui_.transform.Find("Pop-up").Find("Room_rule").gameObject;            createPanel.SetActive(true);        }    }
+            GameObject createPanel = roomsui_.transform.Find("Pop-up").Find("Room_rule").gameObject;
+            createPanel.SetActive(true);
+        }
 
-    private void OnJoinRooms(EventTriggerType eventtype, object button, PointerEventData eventData)    {        if (eventtype == EventTriggerType.PointerClick)        {
+    }
+
+    private void OnJoinRooms(EventTriggerType eventtype, object button, PointerEventData eventData)
+    {
+        if (eventtype == EventTriggerType.PointerClick)
+        {
             CustomAudio.GetInstance().PlayCustomAudio(1002);
-            GameObject joinPanel = roomsui_.transform.Find("Pop-up").Find("Room_number").gameObject;            joinPanel.SetActive(true);        }    }
+            GameObject joinPanel = roomsui_.transform.Find("Pop-up").Find("Room_number").gameObject;
+            joinPanel.SetActive(true);
+        }
+
+    }
 
     //自建比赛
     private void OnClickSelfMatch(EventTriggerType eventtype, object button, PointerEventData eventData)
@@ -1745,6 +1769,22 @@ public enum GameRecordMsgState
         UnityEngine.Object asset = bundle.LoadAsset(male == 1 ? "3Dmodel_nan_1" : "3Dmodel_nv_1");
         GameObject obj = (GameObject)GameMain.instantiate(asset);        obj.transform.SetParent(ModelObj.transform, false);    }    public void AfterLogin()
     {
+#if ScFish
+        CanvasObj = GameObject.Find("Canvas/Root");
+        gSceneLoadProgressLandscapeUI = CanvasObj.transform.FindChild("Main_Loading").gameObject;
+        if (gSceneLoadProgressPortraitUI == null)
+        {
+            UnityEngine.Object obj0 = Resources.Load("Prefabs/Main_Loading_shuping");
+            gSceneLoadProgressPortraitUI = (GameObject)GameMain.instantiate(obj0);
+            gSceneLoadProgressPortraitUI.transform.SetParent(CanvasObj.transform, false);
+            gSceneLoadProgressPortraitUI.transform.SetAsFirstSibling();
+        }
+        gCurDisplayLoadSceneProgressUI = gSceneLoadProgressPortraitUI;
+        enGameState = GameState_Enum.GameState_Hall;
+        PlayerObj.ChangeRequestEnterGameState(false);
+        return;
+#endif
+
         if (enGameState == GameState_Enum.GameState_Game || enGameState == GameState_Enum.GameState_Appointment
             || enGameState == GameState_Enum.GameState_Contest)
             return;
@@ -1819,7 +1859,8 @@ public enum GameRecordMsgState
 
     void InitContestUIEvents()
     {
-        GameObject clubBtn = contestui_.transform.Find("Panelbottom/Bottom/Button_Club").gameObject;        XPointEvent.AutoAddListener(clubBtn, onClickClub, null);
+        GameObject clubBtn = contestui_.transform.Find("Panelbottom/Bottom/Button_Club").gameObject;
+        XPointEvent.AutoAddListener(clubBtn, onClickClub, null);
 
         GameObject bagBtn = contestui_.transform.Find("Panelbottom/Bottom/Button_Goods").gameObject;
         XPointEvent.AutoAddListener(bagBtn, onClickBag, null);
@@ -1912,10 +1953,20 @@ public enum GameRecordMsgState
     //大厅状态断线处理
     public void ServerCloseByGmOrder(object param)    {        GameMain.Instance.ExitApplication(1);    }
 
-    /// <summary>    /// 展示救济金界面    /// </summary>    void ShowReliefInterface(uint nAddCoin, int nLeftNum)    {        if (enGameState == GameState_Enum.GameState_Login)            return;        AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);        if (bundle == null)            return;        if (CanvasObj == null)            CanvasObj = GameObject.Find("Canvas/Root");        if (null == m_objRelief)        {            UnityEngine.Object tipsobj = bundle.LoadAsset("Tips_Jiujijin");            m_objRelief = (GameObject)GameMain.instantiate(tipsobj);            XPointEvent.AutoAddListener(m_objRelief.transform.Find("ImageBG").Find("ButtonOk").gameObject, OnClickReliefOk, null);        }
+    /// <summary>    /// 展示救济金界面    /// </summary>    void ShowReliefInterface(uint nAddCoin, int nLeftNum)    {        if (enGameState == GameState_Enum.GameState_Login)            return;        AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);        if (bundle == null)            return;        if (CanvasObj == null)            CanvasObj = GameObject.Find("Canvas/Root");        if (null == m_objRelief)        {            UnityEngine.Object tipsobj = bundle.LoadAsset("Tips_Jiujijin");            m_objRelief = (GameObject)GameMain.instantiate(tipsobj);            XPointEvent.AutoAddListener(m_objRelief.transform.Find("ImageBG").Find("ButtonOk").gameObject, OnClickReliefOk, null);
+        }
 
         //GameObject background = GameObject.Find("Canvas/Root");
-        m_objRelief.transform.SetParent(CanvasObj.transform, false);        m_objRelief.SetActive(true);        Text strLeft = m_objRelief.transform.Find("ImageBG").Find("Text").Find("TextTime").Find("Num").gameObject.GetComponent<Text>();        strLeft.text = nLeftNum.ToString();        Text strAdd = m_objRelief.transform.Find("ImageBG").Find("Text").Find("TextNum").gameObject.GetComponent<Text>();        strAdd.text = nAddCoin.ToString();        m_iAddReliefCoin = 0;        m_iLeftReliefNum = 0;    }    void OnClickReliefOk(EventTriggerType eventtype, object button, PointerEventData eventData)    {        if (eventtype != EventTriggerType.PointerUp)            return;        AudioManager.Instance.PlaySound(GameDefine.HallAssetbundleName, "UIbutton02");        m_objRelief.SetActive(false);    }
+        m_objRelief.transform.SetParent(CanvasObj.transform, false);
+
+        m_objRelief.SetActive(true);
+
+        Text strLeft = m_objRelief.transform.Find("ImageBG").Find("Text").Find("TextTime").Find("Num").gameObject.GetComponent<Text>();
+        strLeft.text = nLeftNum.ToString();
+
+        Text strAdd = m_objRelief.transform.Find("ImageBG").Find("Text").Find("TextNum").gameObject.GetComponent<Text>();
+        strAdd.text = nAddCoin.ToString();
+        m_iAddReliefCoin = 0;        m_iLeftReliefNum = 0;    }    void OnClickReliefOk(EventTriggerType eventtype, object button, PointerEventData eventData)    {        if (eventtype != EventTriggerType.PointerUp)            return;        AudioManager.Instance.PlaySound(GameDefine.HallAssetbundleName, "UIbutton02");        m_objRelief.SetActive(false);    }
 
     /// <summary>    /// 发送消息到login 获取金钱排行榜    /// </summary>    public void SendGetCoinRankData(short nBeginSign = 0)    {        UMessage LoginMsg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_PLAYERGETCOINRANK);        LoginMsg.Add(nBeginSign);        NetWorkClient.GetInstance().SendMsg(LoginMsg);    }    bool BackPeopleNumber(uint _msgType, UMessage _ms)
     {
@@ -1944,7 +1995,8 @@ public enum GameRecordMsgState
     void RefreshPeopleNumberByGameKind(byte gameid)
     {
         UnityEngine.Transform ImageIconTransform = GetGameIcon_ImageIcon(gameid);
-        Text peopleOnLine = ImageIconTransform.Find("playerNum").Find("Text_Num").gameObject.GetComponent<Text>();        peopleOnLine.text = GetPlayerData().peopleNumber[gameid].ToString();
+        Text peopleOnLine = ImageIconTransform.Find("playerNum").Find("Text_Num").gameObject.GetComponent<Text>();
+        peopleOnLine.text = GetPlayerData().peopleNumber[gameid].ToString();
     }    /// <summary>
     /// 获得游戏图标
     /// </summary>
@@ -1977,22 +2029,42 @@ public enum GameRecordMsgState
         UnityEngine.Object gameIconBG = (GameObject)bundle.LoadAsset("Game_Icon");
         GameObject go_gameIconBG = (GameObject)GameMain.instantiate(gameIconBG);
         go_gameIconBG.transform.SetParent(contestui_.transform.Find("Game_icon").Find("Scroll_Game"), false);
-        go_gameIconBG.name = GameId.ToString();        UnityEngine.Object objanimator = (GameObject)bundle.LoadAsset(gamedata.GameIcon);        GameObject gameanimator = (GameObject)GameMain.instantiate(objanimator);
+        go_gameIconBG.name = GameId.ToString();
+
+        UnityEngine.Object objanimator = (GameObject)bundle.LoadAsset(gamedata.GameIcon);
+        GameObject gameanimator = (GameObject)GameMain.instantiate(objanimator);
+
         UnityEngine.Transform ImageIconTransform = go_gameIconBG.transform.Find("Image_Icon");
 
         gameanimator.transform.SetParent(ImageIconTransform.Find("Anime"), false);
 
         ImageIconTransform.Find("playerNum").gameObject.SetActive(false);
 
-        Text peopleOnLine = ImageIconTransform.Find("playerNum").Find("Text_Num").gameObject.GetComponent<Text>();        peopleOnLine.text = GetPlayerData().peopleNumber[GameId].ToString();
+        Text peopleOnLine = ImageIconTransform.Find("playerNum").Find("Text_Num").gameObject.GetComponent<Text>();
+        peopleOnLine.text = GetPlayerData().peopleNumber[GameId].ToString();
         gameicons_.Add(GameId, go_gameIconBG);
 
         UnityEngine.Transform gameiconbtnTransform = go_gameIconBG.transform.Find("Image_Icon");
 
         //检查游戏资源是否需要下载或更新
-        byte state = CResVersionCompareUpdate.CheckGameResNeedDownORUpdate(GameId);        if (state != 0)        {            UnityEngine.Transform IconImageTransform = gameiconbtnTransform.Find("ImageBG");            IconImageTransform.gameObject.SetActive(true);            if (state == 1)            {                IconImageTransform.Find("Text_Size").gameObject.GetComponent<Text>().text = gamedata.BundleTotalSize.ToString() + "M";                IconImageTransform.Find("Text_tishi").gameObject.GetComponent<Text>().text = "下载";            }            else            {                IconImageTransform.Find("Text_Size").gameObject.SetActive(false);                IconImageTransform.Find("Text_tishi").gameObject.GetComponent<Text>().text = "更新";            }        }        else
+        byte state = CResVersionCompareUpdate.CheckGameResNeedDownORUpdate(GameId);
+        if (state != 0)
         {
-            gameiconbtnTransform.transform.Find("ImageBG").gameObject.SetActive(false);        }        XPointEvent.AutoAddListener(gameiconbtnTransform.gameObject, OnClickGameIconBtnEvents, GameId);
+            UnityEngine.Transform IconImageTransform = gameiconbtnTransform.Find("ImageBG");
+            IconImageTransform.gameObject.SetActive(true);            if (state == 1)            {                IconImageTransform.Find("Text_Size").gameObject.GetComponent<Text>().text = gamedata.BundleTotalSize.ToString() + "M";
+                IconImageTransform.Find("Text_tishi").gameObject.GetComponent<Text>().text = "下载";
+            }
+            else
+            {
+                IconImageTransform.Find("Text_Size").gameObject.SetActive(false);
+                IconImageTransform.Find("Text_tishi").gameObject.GetComponent<Text>().text = "更新";
+            }
+        }
+        else
+        {
+            gameiconbtnTransform.transform.Find("ImageBG").gameObject.SetActive(false);
+        }
+        XPointEvent.AutoAddListener(gameiconbtnTransform.gameObject, OnClickGameIconBtnEvents, GameId);
     }    public Sprite GetPlayerIcon()
     {
         if (Luancher.IsVChatLogin)            return GetUrlIconByID(GetPlayerData().GetPlayerIconURL(), 0);        else            return GetHostIconByID(GetPlayerData().PlayerIconId.ToString());
@@ -2067,7 +2139,9 @@ public enum GameRecordMsgState
             Text diamond = contestui_.transform.Find("PanelHead_").
                 Find("Image_DiamondFrame").Find("Text_Diamond").gameObject.GetComponent<Text>();
             diamond.text = (GetPlayerData().GetDiamond() + GetPlayerData().GetCoin()).ToString();
-        }        if(gamerooms_ != null)            gamerooms_.RefreshMoney();        if (contest != null)            contest.RefreshMoney();        if (moments_ != null)            moments_.RefreshMoney();    }
+        }
+
+        if(gamerooms_ != null)            gamerooms_.RefreshMoney();        if (contest != null)            contest.RefreshMoney();        if (moments_ != null)            moments_.RefreshMoney();    }
 
     //刷新奖券显示
     public void RefreshShopPlayerLotteryText()    {
@@ -2087,7 +2161,12 @@ public enum GameRecordMsgState
         }    }
 
     //刷新玩家昵称或头像
-    public void RefreshPlayerNameIcon()    {        Image icon = mainui_.transform.Find("PanelHead_").Find("Image_HeadBG").Find("Image_HeadMask").Find("Image_HeadImage").gameObject.GetComponent<Image>();        icon.sprite = GetIcon(PlayerObj.GetPlayerData().GetPlayerIconURL(),                 GameMain.hall_.GetPlayerId(), (int)PlayerObj.GetPlayerData().PlayerIconId);        Text name = mainui_.transform.Find("PanelHead_").Find("Image_NameBG").Find("Text_Name").gameObject.GetComponent<Text>();        name.text = GetPlayerData().GetPlayerName();    }
+    public void RefreshPlayerNameIcon()    {        Image icon = mainui_.transform.Find("PanelHead_").Find("Image_HeadBG").Find("Image_HeadMask").Find("Image_HeadImage").gameObject.GetComponent<Image>();
+        icon.sprite = GetIcon(PlayerObj.GetPlayerData().GetPlayerIconURL(), 
+                GameMain.hall_.GetPlayerId(), (int)PlayerObj.GetPlayerData().PlayerIconId);
+        Text name = mainui_.transform.Find("PanelHead_").Find("Image_NameBG").Find("Text_Name").gameObject.GetComponent<Text>();
+        name.text = GetPlayerData().GetPlayerName();
+    }
 
     //刷新vip显示
     public void RefreshPlayerVipText()    {        GameObject root = contestui_;
@@ -2104,7 +2183,11 @@ public enum GameRecordMsgState
         //if (roomui_ != null && roomui_.activeSelf)
         //    root = roomui_;
 
-        if (root == null)            return;        Image vip = root.transform.Find("PanelHead_").Find("Image_NameBG").Find("Image_Vip").gameObject.GetComponent<Image>();        GameObject vip_text1 = root.transform.Find("PanelHead_").Find("Image_NameBG").Find("Image_Vip").Find("Vip_Text").Find("Num").gameObject;        GameObject vip_text2 = root.transform.Find("PanelHead_").Find("Image_NameBG").Find("Image_Vip").Find("Vip_Text").Find("Num (1)").gameObject;        int vip_lv = GetPlayerData().GetVipLevel();        AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);        if (bundle != null)        {            if (vip_lv.ToString().Length == 1)            {                if (vip_text2.activeSelf)                {                    vip_text2.SetActive(false);                }                if (vip_lv == 0)                {                    vip.sprite = bundle.LoadAsset<Sprite>("zjm_word_vip_hui");                }                else if (vip_lv > 0)                {                    vip.sprite = bundle.LoadAsset<Sprite>("zjm_word_vip_jin");                }                vip_text1.GetComponent<Image>().sprite = bundle.LoadAsset<Sprite>("zjm_word_sz_vip_" + vip_lv);            }            else if (vip_lv.ToString().Length == 2)            {                if (vip.sprite.name != "zjm_word_vip_jin")                {                    vip.sprite = bundle.LoadAsset<Sprite>("zjm_word_vip_jin");                }                if (!vip_text2.activeSelf)                {                    vip_text2.SetActive(true);                }                vip_text1.GetComponent<Image>().sprite = bundle.LoadAsset<Sprite>("zjm_word_sz_vip_" + vip_lv.ToString().Substring(0, 1));                vip_text2.GetComponent<Image>().sprite = bundle.LoadAsset<Sprite>("zjm_word_sz_vip_" + vip_lv.ToString().Substring(1, 1));            }        }    }    void LoadServiceResource()
+        if (root == null)            return;        Image vip = root.transform.Find("PanelHead_").Find("Image_NameBG").Find("Image_Vip").gameObject.GetComponent<Image>();
+        GameObject vip_text1 = root.transform.Find("PanelHead_").Find("Image_NameBG").Find("Image_Vip").Find("Vip_Text").Find("Num").gameObject;
+        GameObject vip_text2 = root.transform.Find("PanelHead_").Find("Image_NameBG").Find("Image_Vip").Find("Vip_Text").Find("Num (1)").gameObject;
+        int vip_lv = GetPlayerData().GetVipLevel();
+        AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);        if (bundle != null)        {            if (vip_lv.ToString().Length == 1)            {                if (vip_text2.activeSelf)                {                    vip_text2.SetActive(false);                }                if (vip_lv == 0)                {                    vip.sprite = bundle.LoadAsset<Sprite>("zjm_word_vip_hui");                }                else if (vip_lv > 0)                {                    vip.sprite = bundle.LoadAsset<Sprite>("zjm_word_vip_jin");                }                vip_text1.GetComponent<Image>().sprite = bundle.LoadAsset<Sprite>("zjm_word_sz_vip_" + vip_lv);            }            else if (vip_lv.ToString().Length == 2)            {                if (vip.sprite.name != "zjm_word_vip_jin")                {                    vip.sprite = bundle.LoadAsset<Sprite>("zjm_word_vip_jin");                }                if (!vip_text2.activeSelf)                {                    vip_text2.SetActive(true);                }                vip_text1.GetComponent<Image>().sprite = bundle.LoadAsset<Sprite>("zjm_word_sz_vip_" + vip_lv.ToString().Substring(0, 1));                vip_text2.GetComponent<Image>().sprite = bundle.LoadAsset<Sprite>("zjm_word_sz_vip_" + vip_lv.ToString().Substring(1, 1));            }        }    }    void LoadServiceResource()
     {
         if (servicePanel_ == null)
         {

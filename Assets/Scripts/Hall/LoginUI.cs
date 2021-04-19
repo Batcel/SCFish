@@ -11,7 +11,7 @@ using UnityEngine;using UnityEngine.EventSystems;using UnityEngine.UI;using U
 
     //登陆网络重连计时器
     private CTimerCirculateCall LoginNetReconnectTimer;
-    private LoginType enLoginType;    private bool bHavedGetGateServr;    public static CLoginUI Instance    {              get { return instance; }    }    public CLoginUI()    {        VisitorAccountId = 0;        BindMobileAccountId = 0;        MobileCodeTimer = null;        LoginNetReconnectTimer = null;        enLoginType = LoginType.LoginType_Guest;        bHavedGetGateServr = false;        RegitserMsgHandle();        InitLoginUIBtnEvent();        LoadAccountConfig();    }    private void RegitserMsgHandle()    {
+    private LoginType enLoginType;    private bool bHavedGetGateServr;    public static CLoginUI Instance    {              get { return instance; }    }    public CLoginUI()    {        VisitorAccountId = 0;        BindMobileAccountId = 0;        MobileCodeTimer = null;        LoginNetReconnectTimer = null;        enLoginType = LoginType.LoginType_Guest;        bHavedGetGateServr = false;        RegitserMsgHandle();#if !ScFish        InitLoginUIBtnEvent();#endif        LoadAccountConfig();    }    private void RegitserMsgHandle()    {
         CMsgDispatcher.GetInstance().RegMsgDictionary(
            (uint)GameCity.EMSG_ENUM.CCGateMsg_BackPlayerLoginGame, BackGateSerIpPort);        CMsgDispatcher.GetInstance().RegMsgDictionary(
            (uint)GameCity.EMSG_ENUM.CCGateMsg_BackPlayerReqConnIdForWxQR, BackReqConnIdForWxQR);        CMsgDispatcher.GetInstance().RegMsgDictionary(
@@ -314,6 +314,13 @@ using UnityEngine;using UnityEngine.EventSystems;using UnityEngine.UI;using U
         }
         GameMain.hall_.IntelentType = Application.internetReachability;        WriteAccountConfig();        //GameMain.hall_.SendGetCoinRankData();        //m_bIsSendMobileNum = false;        CCustomDialog.CloseCustomWaitUI();
         GameMain.hall_.AfterLogin();
+
+#if ScFish
+        GameMain.hall_.OnClickRoomIconBtn((byte)GameKind_Enum.GameKind_Fishing, 1);
+        return true;
+#endif
+
+
         //GameMain.hall_.LoadHallResource();
         if (playerdata.nGameMode_Before >= 0)
         {
