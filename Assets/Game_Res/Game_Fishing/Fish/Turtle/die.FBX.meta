@@ -1,86 +1,196 @@
 fileFormatVersion: 2
 guid: 93a6ceaa03b25a2469ea5b360bb71438
-timeCreated: 1517292929
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Bip01
-    100002: boody
-    100004: bozi
-    100006: //RootNode
-    100008: eye_l
-    100010: eye_r
-    100012: l1
-    100014: l2
-    100016: l3
-    100018: l4
-    100020: l5
-    100022: l6
-    100024: meimao_l
-    100026: meimao_r
-    100028: r1
-    100030: r2
-    100032: r3
-    100034: r4
-    100036: r5
-    100038: r6
-    100040: tou
-    100042: weiba1
-    100044: weiba2
-    100046: yanpi_l
-    100048: yanpi_r
-    400000: Bip01
-    400002: boody
-    400004: bozi
-    400006: //RootNode
-    400008: eye_l
-    400010: eye_r
-    400012: l1
-    400014: l2
-    400016: l3
-    400018: l4
-    400020: l5
-    400022: l6
-    400024: meimao_l
-    400026: meimao_r
-    400028: r1
-    400030: r2
-    400032: r3
-    400034: r4
-    400036: r5
-    400038: r6
-    400040: tou
-    400042: weiba1
-    400044: weiba2
-    400046: yanpi_l
-    400048: yanpi_r
-    7400000: Take 001
-    9500000: //RootNode
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip01
+  - first:
+      1: 100002
+    second: boody
+  - first:
+      1: 100004
+    second: bozi
+  - first:
+      1: 100006
+    second: //RootNode
+  - first:
+      1: 100008
+    second: eye_l
+  - first:
+      1: 100010
+    second: eye_r
+  - first:
+      1: 100012
+    second: l1
+  - first:
+      1: 100014
+    second: l2
+  - first:
+      1: 100016
+    second: l3
+  - first:
+      1: 100018
+    second: l4
+  - first:
+      1: 100020
+    second: l5
+  - first:
+      1: 100022
+    second: l6
+  - first:
+      1: 100024
+    second: meimao_l
+  - first:
+      1: 100026
+    second: meimao_r
+  - first:
+      1: 100028
+    second: r1
+  - first:
+      1: 100030
+    second: r2
+  - first:
+      1: 100032
+    second: r3
+  - first:
+      1: 100034
+    second: r4
+  - first:
+      1: 100036
+    second: r5
+  - first:
+      1: 100038
+    second: r6
+  - first:
+      1: 100040
+    second: tou
+  - first:
+      1: 100042
+    second: weiba1
+  - first:
+      1: 100044
+    second: weiba2
+  - first:
+      1: 100046
+    second: yanpi_l
+  - first:
+      1: 100048
+    second: yanpi_r
+  - first:
+      4: 400000
+    second: Bip01
+  - first:
+      4: 400002
+    second: boody
+  - first:
+      4: 400004
+    second: bozi
+  - first:
+      4: 400006
+    second: //RootNode
+  - first:
+      4: 400008
+    second: eye_l
+  - first:
+      4: 400010
+    second: eye_r
+  - first:
+      4: 400012
+    second: l1
+  - first:
+      4: 400014
+    second: l2
+  - first:
+      4: 400016
+    second: l3
+  - first:
+      4: 400018
+    second: l4
+  - first:
+      4: 400020
+    second: l5
+  - first:
+      4: 400022
+    second: l6
+  - first:
+      4: 400024
+    second: meimao_l
+  - first:
+      4: 400026
+    second: meimao_r
+  - first:
+      4: 400028
+    second: r1
+  - first:
+      4: 400030
+    second: r2
+  - first:
+      4: 400032
+    second: r3
+  - first:
+      4: 400034
+    second: r4
+  - first:
+      4: 400036
+    second: r5
+  - first:
+      4: 400038
+    second: r6
+  - first:
+      4: 400040
+    second: tou
+  - first:
+      4: 400042
+    second: weiba1
+  - first:
+      4: 400044
+    second: weiba2
+  - first:
+      4: 400046
+    second: yanpi_l
+  - first:
+      4: 400048
+    second: yanpi_r
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Take 001
       takeName: Take 001
+      internalID: 0
       firstFrame: 500
       lastFrame: 531
       wrapMode: 0
@@ -169,13 +279,24 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -185,10 +306,14 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -198,14 +323,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

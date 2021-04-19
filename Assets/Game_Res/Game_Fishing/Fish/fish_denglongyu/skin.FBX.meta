@@ -1,73 +1,174 @@
 fileFormatVersion: 2
 guid: 5a525f23d6f63784e8a8dd6079f2dc91
-timeCreated: 1516000168
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Bip01
-    100002: Bone004
-    100004: Bone006
-    100006: Bone007
-    100008: Bone008
-    100010: Bone009
-    100012: Bone011
-    100014: Bone012
-    100016: Bone013
-    100018: Bone016
-    100020: Bone020
-    100022: Bone021
-    100024: Bone021(mirrored)
-    100026: Bone022
-    100028: Bone022(mirrored)
-    100030: Bone022(mirrored)(mirrored)
-    100032: Bone024
-    100034: Bone027
-    100036: Flshing_Denglongyu
-    100038: //RootNode
-    400000: Bip01
-    400002: Bone004
-    400004: Bone006
-    400006: Bone007
-    400008: Bone008
-    400010: Bone009
-    400012: Bone011
-    400014: Bone012
-    400016: Bone013
-    400018: Bone016
-    400020: Bone020
-    400022: Bone021
-    400024: Bone021(mirrored)
-    400026: Bone022
-    400028: Bone022(mirrored)
-    400030: Bone022(mirrored)(mirrored)
-    400032: Bone024
-    400034: Bone027
-    400036: Flshing_Denglongyu
-    400038: //RootNode
-    4300000: Flshing_Denglongyu
-    9500000: //RootNode
-    13700000: Flshing_Denglongyu
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip01
+  - first:
+      1: 100002
+    second: Bone004
+  - first:
+      1: 100004
+    second: Bone006
+  - first:
+      1: 100006
+    second: Bone007
+  - first:
+      1: 100008
+    second: Bone008
+  - first:
+      1: 100010
+    second: Bone009
+  - first:
+      1: 100012
+    second: Bone011
+  - first:
+      1: 100014
+    second: Bone012
+  - first:
+      1: 100016
+    second: Bone013
+  - first:
+      1: 100018
+    second: Bone016
+  - first:
+      1: 100020
+    second: Bone020
+  - first:
+      1: 100022
+    second: Bone021
+  - first:
+      1: 100024
+    second: Bone021(mirrored)
+  - first:
+      1: 100026
+    second: Bone022
+  - first:
+      1: 100028
+    second: Bone022(mirrored)
+  - first:
+      1: 100030
+    second: Bone022(mirrored)(mirrored)
+  - first:
+      1: 100032
+    second: Bone024
+  - first:
+      1: 100034
+    second: Bone027
+  - first:
+      1: 100036
+    second: Flshing_Denglongyu
+  - first:
+      1: 100038
+    second: //RootNode
+  - first:
+      4: 400000
+    second: Bip01
+  - first:
+      4: 400002
+    second: Bone004
+  - first:
+      4: 400004
+    second: Bone006
+  - first:
+      4: 400006
+    second: Bone007
+  - first:
+      4: 400008
+    second: Bone008
+  - first:
+      4: 400010
+    second: Bone009
+  - first:
+      4: 400012
+    second: Bone011
+  - first:
+      4: 400014
+    second: Bone012
+  - first:
+      4: 400016
+    second: Bone013
+  - first:
+      4: 400018
+    second: Bone016
+  - first:
+      4: 400020
+    second: Bone020
+  - first:
+      4: 400022
+    second: Bone021
+  - first:
+      4: 400024
+    second: Bone021(mirrored)
+  - first:
+      4: 400026
+    second: Bone022
+  - first:
+      4: 400028
+    second: Bone022(mirrored)
+  - first:
+      4: 400030
+    second: Bone022(mirrored)(mirrored)
+  - first:
+      4: 400032
+    second: Bone024
+  - first:
+      4: 400034
+    second: Bone027
+  - first:
+      4: 400036
+    second: Flshing_Denglongyu
+  - first:
+      4: 400038
+    second: //RootNode
+  - first:
+      43: 4300000
+    second: Flshing_Denglongyu
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Flshing_Denglongyu
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 7 - Default
+    second: {fileID: 2100000, guid: 110c721dbd515c242a1043ae256cc8ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flshing_Denglongyu
+    second: {fileID: 2100000, guid: 046064d80cc5ba84987e714e9b0ccaa3, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -75,13 +176,24 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -91,10 +203,14 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -104,14 +220,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

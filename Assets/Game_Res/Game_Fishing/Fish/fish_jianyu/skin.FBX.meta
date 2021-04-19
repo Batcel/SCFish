@@ -1,87 +1,211 @@
 fileFormatVersion: 2
 guid: 03de532a617895b479d8ed7b7e26c3d7
-timeCreated: 1516000165
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Bip01
-    100002: Bone001
-    100004: Bone012
-    100006: Bone012(mirrored)
-    100008: Bone014
-    100010: Bone014(mirrored)
-    100012: Bone015
-    100014: Bone021
-    100016: Bone023
-    100018: Bone024
-    100020: Bone025
-    100022: Bone026
-    100024: Bone027
-    100026: Bone028
-    100028: Flshing_Jianyu
-    100030: //RootNode
-    100032: zui
-    100034: Bone029
-    100036: Bone031
-    100038: Flshing_Jianyu_left_eye
-    100040: Flshing_Jianyu_right_eye
-    100042: "\u5BF9\u8C61003"
-    100044: "\u5BF9\u8C61004"
-    400000: Bip01
-    400002: Bone001
-    400004: Bone012
-    400006: Bone012(mirrored)
-    400008: Bone014
-    400010: Bone014(mirrored)
-    400012: Bone015
-    400014: Bone021
-    400016: Bone023
-    400018: Bone024
-    400020: Bone025
-    400022: Bone026
-    400024: Bone027
-    400026: Bone028
-    400028: Flshing_Jianyu
-    400030: //RootNode
-    400032: zui
-    400034: Bone029
-    400036: Bone031
-    400038: Flshing_Jianyu_left_eye
-    400040: Flshing_Jianyu_right_eye
-    400042: "\u5BF9\u8C61003"
-    400044: "\u5BF9\u8C61004"
-    4300000: Flshing_Jianyu
-    4300002: Flshing_Jianyu_left_eye
-    4300004: Flshing_Jianyu_right_eye
-    4300006: "\u5BF9\u8C61003"
-    4300008: "\u5BF9\u8C61004"
-    9500000: //RootNode
-    13700000: Flshing_Jianyu
-    13700002: Flshing_Jianyu_left_eye
-    13700004: Flshing_Jianyu_right_eye
-    13700006: "\u5BF9\u8C61003"
-    13700008: "\u5BF9\u8C61004"
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip01
+  - first:
+      1: 100002
+    second: Bone001
+  - first:
+      1: 100004
+    second: Bone012
+  - first:
+      1: 100006
+    second: Bone012(mirrored)
+  - first:
+      1: 100008
+    second: Bone014
+  - first:
+      1: 100010
+    second: Bone014(mirrored)
+  - first:
+      1: 100012
+    second: Bone015
+  - first:
+      1: 100014
+    second: Bone021
+  - first:
+      1: 100016
+    second: Bone023
+  - first:
+      1: 100018
+    second: Bone024
+  - first:
+      1: 100020
+    second: Bone025
+  - first:
+      1: 100022
+    second: Bone026
+  - first:
+      1: 100024
+    second: Bone027
+  - first:
+      1: 100026
+    second: Bone028
+  - first:
+      1: 100028
+    second: Flshing_Jianyu
+  - first:
+      1: 100030
+    second: //RootNode
+  - first:
+      1: 100032
+    second: zui
+  - first:
+      1: 100034
+    second: Bone029
+  - first:
+      1: 100036
+    second: Bone031
+  - first:
+      1: 100038
+    second: Flshing_Jianyu_left_eye
+  - first:
+      1: 100040
+    second: Flshing_Jianyu_right_eye
+  - first:
+      1: 100042
+    second: "\u5BF9\u8C61003"
+  - first:
+      1: 100044
+    second: "\u5BF9\u8C61004"
+  - first:
+      4: 400000
+    second: Bip01
+  - first:
+      4: 400002
+    second: Bone001
+  - first:
+      4: 400004
+    second: Bone012
+  - first:
+      4: 400006
+    second: Bone012(mirrored)
+  - first:
+      4: 400008
+    second: Bone014
+  - first:
+      4: 400010
+    second: Bone014(mirrored)
+  - first:
+      4: 400012
+    second: Bone015
+  - first:
+      4: 400014
+    second: Bone021
+  - first:
+      4: 400016
+    second: Bone023
+  - first:
+      4: 400018
+    second: Bone024
+  - first:
+      4: 400020
+    second: Bone025
+  - first:
+      4: 400022
+    second: Bone026
+  - first:
+      4: 400024
+    second: Bone027
+  - first:
+      4: 400026
+    second: Bone028
+  - first:
+      4: 400028
+    second: Flshing_Jianyu
+  - first:
+      4: 400030
+    second: //RootNode
+  - first:
+      4: 400032
+    second: zui
+  - first:
+      4: 400034
+    second: Bone029
+  - first:
+      4: 400036
+    second: Bone031
+  - first:
+      4: 400038
+    second: Flshing_Jianyu_left_eye
+  - first:
+      4: 400040
+    second: Flshing_Jianyu_right_eye
+  - first:
+      4: 400042
+    second: "\u5BF9\u8C61003"
+  - first:
+      4: 400044
+    second: "\u5BF9\u8C61004"
+  - first:
+      43: 4300000
+    second: Flshing_Jianyu
+  - first:
+      43: 4300002
+    second: Flshing_Jianyu_left_eye
+  - first:
+      43: 4300004
+    second: Flshing_Jianyu_right_eye
+  - first:
+      43: 4300006
+    second: "\u5BF9\u8C61003"
+  - first:
+      43: 4300008
+    second: "\u5BF9\u8C61004"
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Flshing_Jianyu
+  - first:
+      137: 13700002
+    second: Flshing_Jianyu_left_eye
+  - first:
+      137: 13700004
+    second: Flshing_Jianyu_right_eye
+  - first:
+      137: 13700006
+    second: "\u5BF9\u8C61003"
+  - first:
+      137: 13700008
+    second: "\u5BF9\u8C61004"
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #176
+    second: {fileID: 2100000, guid: 293ec049b41aa5448a2901936c6cca02, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -89,13 +213,24 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -105,10 +240,14 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -118,14 +257,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

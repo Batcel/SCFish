@@ -1,66 +1,136 @@
 fileFormatVersion: 2
 guid: a96f5fb4b0f4f1b40ae61cc1f97601c4
-timeCreated: 1517292891
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Bip01
-    100002: Bone003
-    100004: Bone005
-    100006: Bone006
-    100008: Bone007
-    100010: Bone008
-    100012: Bone009
-    100014: Bone011
-    100016: Bone013
-    100018: Bone015
-    100020: Bone016
-    100022: Bone016(mirrored)
-    100024: Bone017
-    100026: Bone017(mirrored)
-    100028: //RootNode
-    400000: Bip01
-    400002: Bone003
-    400004: Bone005
-    400006: Bone006
-    400008: Bone007
-    400010: Bone008
-    400012: Bone009
-    400014: Bone011
-    400016: Bone013
-    400018: Bone015
-    400020: Bone016
-    400022: Bone016(mirrored)
-    400024: Bone017
-    400026: Bone017(mirrored)
-    400028: //RootNode
-    7400000: Take 001
-    9500000: //RootNode
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip01
+  - first:
+      1: 100002
+    second: Bone003
+  - first:
+      1: 100004
+    second: Bone005
+  - first:
+      1: 100006
+    second: Bone006
+  - first:
+      1: 100008
+    second: Bone007
+  - first:
+      1: 100010
+    second: Bone008
+  - first:
+      1: 100012
+    second: Bone009
+  - first:
+      1: 100014
+    second: Bone011
+  - first:
+      1: 100016
+    second: Bone013
+  - first:
+      1: 100018
+    second: Bone015
+  - first:
+      1: 100020
+    second: Bone016
+  - first:
+      1: 100022
+    second: Bone016(mirrored)
+  - first:
+      1: 100024
+    second: Bone017
+  - first:
+      1: 100026
+    second: Bone017(mirrored)
+  - first:
+      1: 100028
+    second: //RootNode
+  - first:
+      4: 400000
+    second: Bip01
+  - first:
+      4: 400002
+    second: Bone003
+  - first:
+      4: 400004
+    second: Bone005
+  - first:
+      4: 400006
+    second: Bone006
+  - first:
+      4: 400008
+    second: Bone007
+  - first:
+      4: 400010
+    second: Bone008
+  - first:
+      4: 400012
+    second: Bone009
+  - first:
+      4: 400014
+    second: Bone011
+  - first:
+      4: 400016
+    second: Bone013
+  - first:
+      4: 400018
+    second: Bone015
+  - first:
+      4: 400020
+    second: Bone016
+  - first:
+      4: 400022
+    second: Bone016(mirrored)
+  - first:
+      4: 400024
+    second: Bone017
+  - first:
+      4: 400026
+    second: Bone017(mirrored)
+  - first:
+      4: 400028
+    second: //RootNode
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Take 001
       takeName: Take 001
+      internalID: 0
       firstFrame: 200
       lastFrame: 250
       wrapMode: 0
@@ -129,13 +199,24 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -145,10 +226,14 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -158,14 +243,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

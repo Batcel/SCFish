@@ -1,102 +1,266 @@
 fileFormatVersion: 2
 guid: 0c938de70a6879e4291f66cab28f018b
-timeCreated: 1521514711
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Bip01
-    100002: body
-    100004: Bone001
-    100006: Bone002
-    100008: Bone003
-    100010: Bone004
-    100012: boody
-    100014: bozi
-    100016: eye_l
-    100018: eye_r
-    100020: Flshing_Haigui_baoxiang_di
-    100022: Flshing_Haigui_baoxiang_TOP
-    100024: l1
-    100026: l2
-    100028: l3
-    100030: l4
-    100032: l5
-    100034: l6
-    100036: meimao_l
-    100038: meimao_r
-    100040: r1
-    100042: r2
-    100044: r3
-    100046: r4
-    100048: r5
-    100050: r6
-    100052: //RootNode
-    100054: tou
-    100056: weiba1
-    100058: weiba2
-    100060: yanpi_l
-    100062: yanpi_r
-    400000: Bip01
-    400002: body
-    400004: Bone001
-    400006: Bone002
-    400008: Bone003
-    400010: Bone004
-    400012: boody
-    400014: bozi
-    400016: eye_l
-    400018: eye_r
-    400020: Flshing_Haigui_baoxiang_di
-    400022: Flshing_Haigui_baoxiang_TOP
-    400024: l1
-    400026: l2
-    400028: l3
-    400030: l4
-    400032: l5
-    400034: l6
-    400036: meimao_l
-    400038: meimao_r
-    400040: r1
-    400042: r2
-    400044: r3
-    400046: r4
-    400048: r5
-    400050: r6
-    400052: //RootNode
-    400054: tou
-    400056: weiba1
-    400058: weiba2
-    400060: yanpi_l
-    400062: yanpi_r
-    4300000: body
-    4300002: Flshing_Haigui_baoxiang_di
-    4300004: Flshing_Haigui_baoxiang_TOP
-    7400000: Take 001
-    9500000: //RootNode
-    13700000: body
-    13700002: Flshing_Haigui_baoxiang_di
-    13700004: Flshing_Haigui_baoxiang_TOP
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip01
+  - first:
+      1: 100002
+    second: body
+  - first:
+      1: 100004
+    second: Bone001
+  - first:
+      1: 100006
+    second: Bone002
+  - first:
+      1: 100008
+    second: Bone003
+  - first:
+      1: 100010
+    second: Bone004
+  - first:
+      1: 100012
+    second: boody
+  - first:
+      1: 100014
+    second: bozi
+  - first:
+      1: 100016
+    second: eye_l
+  - first:
+      1: 100018
+    second: eye_r
+  - first:
+      1: 100020
+    second: Flshing_Haigui_baoxiang_di
+  - first:
+      1: 100022
+    second: Flshing_Haigui_baoxiang_TOP
+  - first:
+      1: 100024
+    second: l1
+  - first:
+      1: 100026
+    second: l2
+  - first:
+      1: 100028
+    second: l3
+  - first:
+      1: 100030
+    second: l4
+  - first:
+      1: 100032
+    second: l5
+  - first:
+      1: 100034
+    second: l6
+  - first:
+      1: 100036
+    second: meimao_l
+  - first:
+      1: 100038
+    second: meimao_r
+  - first:
+      1: 100040
+    second: r1
+  - first:
+      1: 100042
+    second: r2
+  - first:
+      1: 100044
+    second: r3
+  - first:
+      1: 100046
+    second: r4
+  - first:
+      1: 100048
+    second: r5
+  - first:
+      1: 100050
+    second: r6
+  - first:
+      1: 100052
+    second: //RootNode
+  - first:
+      1: 100054
+    second: tou
+  - first:
+      1: 100056
+    second: weiba1
+  - first:
+      1: 100058
+    second: weiba2
+  - first:
+      1: 100060
+    second: yanpi_l
+  - first:
+      1: 100062
+    second: yanpi_r
+  - first:
+      4: 400000
+    second: Bip01
+  - first:
+      4: 400002
+    second: body
+  - first:
+      4: 400004
+    second: Bone001
+  - first:
+      4: 400006
+    second: Bone002
+  - first:
+      4: 400008
+    second: Bone003
+  - first:
+      4: 400010
+    second: Bone004
+  - first:
+      4: 400012
+    second: boody
+  - first:
+      4: 400014
+    second: bozi
+  - first:
+      4: 400016
+    second: eye_l
+  - first:
+      4: 400018
+    second: eye_r
+  - first:
+      4: 400020
+    second: Flshing_Haigui_baoxiang_di
+  - first:
+      4: 400022
+    second: Flshing_Haigui_baoxiang_TOP
+  - first:
+      4: 400024
+    second: l1
+  - first:
+      4: 400026
+    second: l2
+  - first:
+      4: 400028
+    second: l3
+  - first:
+      4: 400030
+    second: l4
+  - first:
+      4: 400032
+    second: l5
+  - first:
+      4: 400034
+    second: l6
+  - first:
+      4: 400036
+    second: meimao_l
+  - first:
+      4: 400038
+    second: meimao_r
+  - first:
+      4: 400040
+    second: r1
+  - first:
+      4: 400042
+    second: r2
+  - first:
+      4: 400044
+    second: r3
+  - first:
+      4: 400046
+    second: r4
+  - first:
+      4: 400048
+    second: r5
+  - first:
+      4: 400050
+    second: r6
+  - first:
+      4: 400052
+    second: //RootNode
+  - first:
+      4: 400054
+    second: tou
+  - first:
+      4: 400056
+    second: weiba1
+  - first:
+      4: 400058
+    second: weiba2
+  - first:
+      4: 400060
+    second: yanpi_l
+  - first:
+      4: 400062
+    second: yanpi_r
+  - first:
+      43: 4300000
+    second: body
+  - first:
+      43: 4300002
+    second: Flshing_Haigui_baoxiang_di
+  - first:
+      43: 4300004
+    second: Flshing_Haigui_baoxiang_TOP
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: body
+  - first:
+      137: 13700002
+    second: Flshing_Haigui_baoxiang_di
+  - first:
+      137: 13700004
+    second: Flshing_Haigui_baoxiang_TOP
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 58b828ff139c03e4e9680d2a325dd5b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 03 - Default
+    second: {fileID: 2100000, guid: 29c39bb901457034684237b3fca9518f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: default
+    second: {fileID: 2100000, guid: c958b1e65f728f6419dedda72b3f2e4f, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -104,13 +268,24 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -120,10 +295,14 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -133,14 +312,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
