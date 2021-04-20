@@ -3434,6 +3434,8 @@ public class HallMain
 
     public Sprite GetUrlIconByID(string url, uint playerid)
     {
+        if (sprites_.Count == 0)
+            return null;
 
         if (playerid == 0)
             playerid = GetPlayerId();
@@ -3444,6 +3446,9 @@ public class HallMain
 
     public Sprite GetHostIconByID(string id)
     {
+        if (sprites_.Count == 0)
+            return null;
+
         if (sprites_.ContainsKey(id))
             return sprites_[id];
         else

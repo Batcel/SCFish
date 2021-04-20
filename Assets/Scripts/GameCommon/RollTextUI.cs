@@ -66,7 +66,7 @@ public class CRollTextUI{    private static CRollTextUI instance = new CRollTe
         filereader.Close();
         filereader.Dispose();
         return true;
-    }    private bool InitRollUI()    {        if(HorizontalRollUIObj == null)        {            AssetBundle bd = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);            if (bd == null)                return false;            HorizontalRollUIObj = GameMain.instantiate(bd.LoadAsset("Tips_Marquee") as Object) as GameObject;                       HorizontalRollTextTransf = HorizontalRollUIObj.transform.Find("ImageMask").Find("Text");            HorizontalRollText = HorizontalRollTextTransf.gameObject.GetComponent<Text>();            HorizontalRollUIObj.SetActive(false);
+    }    private bool InitRollUI()    {        if(HorizontalRollUIObj == null)        {#if ScFish            AssetBundle bd = AssetBundleManager.GetAssetBundle("common.resource");#else            AssetBundle bd = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);#endif            if (bd == null)                return false;            HorizontalRollUIObj = GameMain.instantiate(bd.LoadAsset("Tips_Marquee") as Object) as GameObject;                       HorizontalRollTextTransf = HorizontalRollUIObj.transform.Find("ImageMask").Find("Text");            HorizontalRollText = HorizontalRollTextTransf.gameObject.GetComponent<Text>();            HorizontalRollUIObj.SetActive(false);
             LoadSystemRollText();
 
         }        return true;    }    /// <summary>
@@ -98,7 +98,7 @@ public class CRollTextUI{    private static CRollTextUI instance = new CRollTe
     {
         if(VerticalRollUIPerfabObj == null)
         {
-            AssetBundle bd = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);            if (bd == null)                return;
+#if ScFish            AssetBundle bd = AssetBundleManager.GetAssetBundle("common.resource");#else            AssetBundle bd = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);#endif            if (bd == null)                return;
             VerticalRollUIPerfabObj = bd.LoadAsset("Tips_Text") as Object;
         }
 
@@ -181,9 +181,11 @@ public class CRollTextUI{    private static CRollTextUI instance = new CRollTe
         if (HorizontalRollUIObj == null)            return;        HorizontalRollUIObj.transform.SetParent(GameObject.Find("Canvas_1/Root").transform,false);        HorizontalRollUIObj.transform.SetAsLastSibling();    }    /// <summary>    /// 更换跑马灯文本内容    /// </summary>    /// <param name="rollString"></param>    /// <returns></returns>    private bool SetTextToRoll(string rollString)    {        HorizontalRollTextTransf.localPosition = new Vector3(240,0,0);        HorizontalRollText.text = rollString;        CTrumpetUI.Instance.AddTurmpetHistroy(rollString);        return true;    }    /// <summary>
     /// 注册一个计时器
     /// </summary>    private void InitSystemRollTimer()
-    {      
+    {
+#if !ScFish
         SystemHorizontalRollTextTimer = new SingleTimeBase(10f, SystemRollTimeCallBack, null);
         xTimeManger.Instance.RegisterTimer(SystemHorizontalRollTextTimer);
+#endif
     }    /// <summary>
     /// 计时器回调
     /// </summary>
@@ -252,4 +254,5 @@ public class CRollTextUI{    private static CRollTextUI instance = new CRollTe
         }
         if (VerticalRollTextObjList.Count == 0)
             bVerticalRollTextUIShow = false;
+
     }    /// <summary>    /// 推动跑马灯    /// </summary>    public void ProcessTickRollText()    {        if (bRollTickPause)            return;        if (bHorizontalRollTextUIShow)            ProcessTickHorizontalRollText();        if (bVerticalRollTextUIShow)            ProcessTickVerticalRollText();    }}
