@@ -11,3 +11,7 @@
 /.git/*
 /.vs/*
 Assets/AssetBundles/*
+Assets/Scenes/MainScene.unity
+Assets/Scripts/Luancher.meta
+Assets/Scripts/Luancher.meta
+ProjectSettings/GraphicsSettings.asset
