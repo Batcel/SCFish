@@ -1,0 +1,11 @@
+{
+  "displayName": "ByteGame Develop Tools",
+  "name": "com.bytedance.bgdt",
+  "version": "2.0.112",
+  "unity": "2019.1",
+  "description": "ByteGame Develop Tools",
+  "keywords": [],
+  "category": "Libraries",
+  "dependencies": {
+  }
+}

@@ -3,8 +3,11 @@
 /Logs/*
 /obj/*
 /Packages/*
+/Temp/*
 *.manifest
 *.resource
 *.scene
 *.csproj
+/.git/*
 /.vs/*
+Assets/AssetBundles/*

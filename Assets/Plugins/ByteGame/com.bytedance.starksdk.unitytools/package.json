@@ -1,0 +1,14 @@
+{
+  "displayName": "Stark SDK - Unity Tools",
+  "name": "com.bytedance.starksdk.unitytools",
+  "version": "2.2.121",
+  "unity": "2019.4.8f1",
+  "description": "StarkSDK Plugin",
+  "keywords": [],
+  "category": "Libraries",
+  "links": [
+    { "label": "View Document", "url": "https://bytedance.feishu.cn/docs/doccnGEsOm0yquys4iAgtVi7nKh#" }
+  ],
+  "dependencies": {
+  }
+}
