@@ -507,12 +507,12 @@ public class CGame_Fishing : CGameBase
         UnityEngine.Object obj;
         Button butn;
         Transform tfm;
-        Sprite sprite;
+        //Sprite sprite;
         byte index = 0;
         Button[] buttons;
 
-        PlayerData pd = GameMain.hall_.GetPlayerData();
-        sprite = GameMain.hall_.GetIcon(pd.GetPlayerIconURL(), pd.GetPlayerID(), (int)pd.PlayerIconId);
+        //PlayerData pd = GameMain.hall_.GetPlayerData();
+        //sprite = GameMain.hall_.GetIcon(pd.GetPlayerIconURL(), pd.GetPlayerID(), (int)pd.PlayerIconId);
 
 #if HAVE_LOBBY        //load lobby ui---------------------------------------------
         obj = (GameObject)FishingAssetBundle.LoadAsset("Fishing_Lobby");
