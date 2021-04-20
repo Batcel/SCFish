@@ -1,9 +1,8 @@
 fileFormatVersion: 2
 guid: e0a2c59326582194db1f9295d64dfafe
 folderAsset: yes
-timeCreated: 1490585469
-licenseType: Pro
 DefaultImporter:
+  externalObjects: {}
   userData: 
-  assetBundleName: hall.resource
+  assetBundleName: commom.resource
   assetBundleVariant: 

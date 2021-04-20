@@ -19,3 +19,7 @@ ProjectSettings/GraphicsSettings.asset
 SCFish.sln
 Assets/Scripts/Luancher.meta
 Assets/Scripts/Luancher.meta
+*.asset
+*.asset
+*.asset
+ProjectSettings/GraphicsSettings.asset
