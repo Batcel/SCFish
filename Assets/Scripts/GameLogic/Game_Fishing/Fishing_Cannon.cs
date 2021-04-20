@@ -14,12 +14,22 @@ public class Fishing_Cannon : MonoBehaviour {
     protected AudioSource m_FireSound;
 
     public Fishing_Role BelongRole { get; set; }
-    public bool AutoFire { get; set; }
+    public bool AutoFire
+    {
+        get { return m_bAutoFire; }
+        set
+        {
+            if (!value)
+                m_bFire = false;
+            m_bAutoFire = value;
+        }
+    }
 
     Image m_LineImg;
 
     //射击计时器
     float m_shootTimer = 0;
+    bool m_bAutoFire = false;
     bool m_bFire = false;
     FishingCannonData m_Data;
 

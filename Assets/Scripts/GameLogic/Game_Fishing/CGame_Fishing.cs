@@ -91,7 +91,11 @@ public class CGame_Fishing : CGameBase
 
     byte m_nLotteryValue = RoomInfo.NoSit;
     byte m_nCurrenLevel = RoomInfo.NoSit;
+#if ScFish
+    public const byte PlayerNum = 1;
+#else
     public const byte PlayerNum = 4;
+#endif
     public const int FishLayer = 1 << 11;
     FishGameState_Enum m_eGameState;
 
@@ -507,12 +511,12 @@ public class CGame_Fishing : CGameBase
         UnityEngine.Object obj;
         Button butn;
         Transform tfm;
-        //Sprite sprite;
+        Sprite sprite;
         byte index = 0;
         Button[] buttons;
 
-        //PlayerData pd = GameMain.hall_.GetPlayerData();
-        //sprite = GameMain.hall_.GetIcon(pd.GetPlayerIconURL(), pd.GetPlayerID(), (int)pd.PlayerIconId);
+        PlayerData pd = GameMain.hall_.GetPlayerData();
+        sprite = GameMain.hall_.GetIcon(pd.GetPlayerIconURL(), pd.GetPlayerID(), (int)pd.PlayerIconId);
 
 #if HAVE_LOBBY        //load lobby ui---------------------------------------------
         obj = (GameObject)FishingAssetBundle.LoadAsset("Fishing_Lobby");

@@ -45,8 +45,18 @@ public class Fishing_Role
         Transform tfm = GameBase.MainUITfm.Find("Middle/playerPoint_" + (index + 1));
         m_SitUI = tfm.Find("Button_sit");
         m_InfoUI = tfm.Find("playerinfo");
-        tfm = m_InfoUI.Find("Middle/ButtonBG_lv");
 
+#if ScFish
+        m_tgAutoFire = tfm.Find("Toggle_zidong").GetComponent<Toggle>();
+        m_tgAutoFire.isOn = false;
+        m_tgAutoFire.onValueChanged.AddListener(UpdateAutoFire);
+
+        m_tgChange = tfm.Find("Toggle_ThreePao").GetComponent<Toggle>();
+        m_tgChange.isOn = false;
+        m_tgChange.onValueChanged.AddListener(UpdateSwitchCannon);
+#endif
+
+        tfm = m_InfoUI.Find("Middle/ButtonBG_lv");
         m_SitUI.GetComponent<Button>().onClick.AddListener(OnClickSit);
         m_LvAddBtn = tfm.Find("Button_add").GetComponent<Button>();
         m_LvAddBtn.onClick.AddListener(()=>OnClickLevel(1));
@@ -387,4 +397,57 @@ public class Fishing_Role
         m_SpecailCoinText.text = reward.ToString();
         GameMain.WaitForCall(showTime, () => m_SpecailCoinText.transform.parent.gameObject.SetActive(false));
     }
+
+#if ScFish
+    Toggle m_tgAutoFire;
+    Toggle m_tgChange;
+
+    void UpdateAutoFire(bool on)
+    {
+        if (on)
+            GameMain.SC(OnUpdateAutoFire(1f));
+    }
+
+    IEnumerator OnUpdateAutoFire(float fireTime)
+    {
+        m_tgAutoFire.interactable = false;
+
+        //show add...
+        yield return new WaitForSecondsRealtime(3f);
+
+        OnAutoFireChange(true);
+
+
+        yield return new WaitForSecondsRealtime(fireTime);
+
+        OnAutoFireChange(false);
+
+        m_tgAutoFire.isOn = false;
+        m_tgAutoFire.interactable = true;
+    }
+
+    void UpdateSwitchCannon(bool on)
+    {
+        if(on)
+            GameMain.SC(OnUpdateSwitchCannon(1f));
+    }
+
+    IEnumerator OnUpdateSwitchCannon(float fireTime)
+    {
+        m_tgChange.interactable = false;
+
+        //show add...
+        yield return new WaitForSecondsRealtime(3f);
+
+        OnChangeCannon(true, 2, 1, 1);
+
+
+        yield return new WaitForSecondsRealtime(fireTime);
+
+        OnChangeCannon(true, 1, 1, 1);
+
+        m_tgChange.isOn = false;
+        m_tgChange.interactable = true;
+    }
+#endif
 }
