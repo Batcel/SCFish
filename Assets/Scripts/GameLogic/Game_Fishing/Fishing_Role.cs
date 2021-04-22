@@ -405,7 +405,7 @@ public class Fishing_Role
     void UpdateAutoFire(bool on)
     {
         if (on)
-            GameMain.SC(OnUpdateAutoFire(1f));
+            GameMain.SC(OnUpdateAutoFire(Fishing_Data.GetInstance().nAutoFireTime));
     }
 
     IEnumerator OnUpdateAutoFire(float fireTime)
@@ -429,7 +429,7 @@ public class Fishing_Role
     void UpdateSwitchCannon(bool on)
     {
         if(on)
-            GameMain.SC(OnUpdateSwitchCannon(1f));
+            GameMain.SC(OnUpdateSwitchCannon(Fishing_Data.GetInstance().nThreePaoTime));
     }
 
     IEnumerator OnUpdateSwitchCannon(float fireTime)
