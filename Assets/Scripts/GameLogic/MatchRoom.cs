@@ -16,23 +16,23 @@ public class RoomDeskInfo
         if (!deskTfm)
             return;
 
-        Transform tfm = deskTfm.FindChild("Image_player_" + (sit + 1));
+        Transform tfm = deskTfm.Find("Image_player_" + (sit + 1));
         if (tfm == null)
             return;
 
         if(show)
         {
-            tfm.FindChild("Button_seat").gameObject.SetActive(false);
-            tfm = tfm.FindChild("Image_Head");
+            tfm.Find("Button_seat").gameObject.SetActive(false);
+            tfm = tfm.Find("Image_Head");
             tfm.gameObject.SetActive(true);
             Sprite sp = GameMain.hall_.GetIcon(url, playerid, faceId);
-            tfm.FindChild("Image_HeadMask/Image_HeadImage").GetComponent<Image>().sprite = sp;
-            tfm.FindChild("Image_NameBG/TextName").GetComponent<Text>().text = name;
+            tfm.Find("Image_HeadMask/Image_HeadImage").GetComponent<Image>().sprite = sp;
+            tfm.Find("Image_NameBG/TextName").GetComponent<Text>().text = name;
         }
         else
         {
-            tfm.FindChild("Button_seat").gameObject.SetActive(true);
-            tfm.FindChild("Image_Head").gameObject.SetActive(false);
+            tfm.Find("Button_seat").gameObject.SetActive(true);
+            tfm.Find("Image_Head").gameObject.SetActive(false);
         }
     }
 
@@ -56,17 +56,17 @@ public class ChairInfo
 
         if (show)
         {
-            chairTfm.FindChild("Button_sit").gameObject.SetActive(false);
-            Transform tfm = chairTfm.FindChild("Image_Head");
+            chairTfm.Find("Button_sit").gameObject.SetActive(false);
+            Transform tfm = chairTfm.Find("Image_Head");
             tfm.gameObject.SetActive(true);
             Sprite sp = GameMain.hall_.GetIcon(url, playerid, faceId);
-            tfm.FindChild("Image_HeadMask/Image_HeadImage").GetComponent<Image>().sprite = sp;
-            tfm.FindChild("Image_NameBG/TextName").GetComponent<Text>().text = name;
+            tfm.Find("Image_HeadMask/Image_HeadImage").GetComponent<Image>().sprite = sp;
+            tfm.Find("Image_NameBG/TextName").GetComponent<Text>().text = name;
         }
         else
         {
-            chairTfm.FindChild("Button_sit").gameObject.SetActive(true);
-            chairTfm.FindChild("Image_Head").gameObject.SetActive(false);
+            chairTfm.Find("Button_sit").gameObject.SetActive(true);
+            chairTfm.Find("Image_Head").gameObject.SetActive(false);
             SetReady(false);
             ShowOffline(false);
         }
@@ -75,13 +75,13 @@ public class ChairInfo
     public void SetReady(bool ready)
     {
         if(chairTfm != null)
-            chairTfm.FindChild("already").gameObject.SetActive(ready);
+            chairTfm.Find("already").gameObject.SetActive(ready);
     }
 
     public void ShowOffline(bool off)
     {
         if (chairTfm != null)
-            chairTfm.FindChild("Text_offline").gameObject.SetActive(off);
+            chairTfm.Find("Text_offline").gameObject.SetActive(off);
     }
 }
 
@@ -231,15 +231,15 @@ public class MatchRoom : MonoBehaviour
         RoomTfm = obj.transform;
         RoomTfm.SetParent(canvasTfm, false);
 
-        m_Scroll = RoomTfm.FindChild("PanelGame_").GetComponent<ScrollRect>();
+        m_Scroll = RoomTfm.Find("PanelGame_").GetComponent<ScrollRect>();
         m_Scroll.onValueChanged.AddListener(OnScrollValueChange);
         m_Scroll.verticalScrollbar.value = 1f;
 
-        RoomTfm.FindChild("PanelHead_/Button_Return").GetComponent<Button>().
+        RoomTfm.Find("PanelHead_/Button_Return").GetComponent<Button>().
             onClick.AddListener(()=>OnClickReturn(3));
-        RoomTfm.FindChild("PanelHead_/Button_matching").GetComponent<Button>().
+        RoomTfm.Find("PanelHead_/Button_matching").GetComponent<Button>().
             onClick.AddListener(OnClickQuickMatch);
-        obj = RoomTfm.FindChild("PanelHead_/Image_DiamondFrame").gameObject;
+        obj = RoomTfm.Find("PanelHead_/Image_DiamondFrame").gameObject;
         XPointEvent.AutoAddListener(obj, GameMain.hall_.Charge, Shop.SHOPTYPE.SHOPTYPE_DIAMOND);
 
         LoadMatchingTableResource(GameMain.hall_.GameBaseObj.GetGameType(), bundle);
@@ -285,15 +285,15 @@ public class MatchRoom : MonoBehaviour
         TableTfm = obj.transform;
         TableTfm.SetParent(canvasTfm, false);
 
-        Button btn = TableTfm.FindChild("bottom/Button_Invitation").GetComponent<Button>();
+        Button btn = TableTfm.Find("bottom/Button_Invitation").GetComponent<Button>();
         btn.onClick.AddListener(OnClickDeskInvitate);
-        btn = TableTfm.FindChild("bottom/Button_Ready").GetComponent<Button>();
+        btn = TableTfm.Find("bottom/Button_Ready").GetComponent<Button>();
         btn.onClick.AddListener(OnClickDeskReady);
         btn.gameObject.SetActive(false);
-        btn = TableTfm.FindChild("Top/Button_Return").GetComponent<Button>();
+        btn = TableTfm.Find("Top/Button_Return").GetComponent<Button>();
         btn.onClick.AddListener(() => OnClickReturn(0));
 
-        m_TipText = TableTfm.FindChild("Pop-up/ImagereadyTip/Text_time").GetComponent<Text>();
+        m_TipText = TableTfm.Find("Pop-up/ImagereadyTip/Text_time").GetComponent<Text>();
 
         UpdateMatchTablePlayerInfo(playerNumPerDesk);
     }
@@ -315,7 +315,7 @@ public class MatchRoom : MonoBehaviour
             if(TableTfm)
             {
                 TableTfm.SetAsLastSibling();
-                TableTfm.FindChild("bottom/Button_Ready").gameObject.SetActive(true);
+                TableTfm.Find("bottom/Button_Ready").gameObject.SetActive(true);
             }
         }
     }
@@ -391,7 +391,7 @@ public class MatchRoom : MonoBehaviour
             return;
 
         InitDesks();
-        Button btn = TableTfm.FindChild("bottom/Button_Ready").GetComponent<Button>();
+        Button btn = TableTfm.Find("bottom/Button_Ready").GetComponent<Button>();
         btn.interactable = true;
         TableTfm.gameObject.SetActive(show);
         foreach (ChairInfo ci in m_ChairList)
@@ -414,9 +414,9 @@ public class MatchRoom : MonoBehaviour
             }
 
             if(roomId != 0)
-                TableTfm.FindChild("Top/ImageBG/Text_Room/Text_Num").GetComponent<Text>().text = roomId.ToString();
+                TableTfm.Find("Top/ImageBG/Text_Room/Text_Num").GetComponent<Text>().text = roomId.ToString();
             if(deskId != 0)
-                TableTfm.FindChild("Top/ImageBG/Text_table/Text_Num").GetComponent<Text>().text = deskId.ToString();
+                TableTfm.Find("Top/ImageBG/Text_table/Text_Num").GetComponent<Text>().text = deskId.ToString();
 
             CustomAudio.GetInstance().PlayCustomAudio(1001, true);
         }
@@ -489,7 +489,7 @@ public class MatchRoom : MonoBehaviour
                         ShowKickTip(false);
                    }
                     else
-                        TableTfm.FindChild("bottom/Button_Ready").GetComponent<Button>().interactable = true;
+                        TableTfm.Find("bottom/Button_Ready").GetComponent<Button>().interactable = true;
                 }
                 break;
 
@@ -580,7 +580,7 @@ public class MatchRoom : MonoBehaviour
 
     void UpdateDiamond(long num)
     {
-        RoomTfm.FindChild("PanelHead_/Image_DiamondFrame/Text_Diamond").GetComponent<Text>().text
+        RoomTfm.Find("PanelHead_/Image_DiamondFrame/Text_Diamond").GetComponent<Text>().text
             = num.ToString();
     }
 
@@ -598,7 +598,7 @@ public class MatchRoom : MonoBehaviour
         }
 
         RoomTfm.gameObject.SetActive(true);
-        RoomTfm.FindChild("PanelHead_/Image_Icon").GetComponent<Image>().sprite = bundle.LoadAsset<Sprite>(gamedata.GameTextIcon);
+        RoomTfm.Find("PanelHead_/Image_Icon").GetComponent<Image>().sprite = bundle.LoadAsset<Sprite>(gamedata.GameTextIcon);
         UpdateDiamond(GameMain.hall_.GetPlayerData().GetDiamond());
     }
 
@@ -631,16 +631,16 @@ public class MatchRoom : MonoBehaviour
             obj.transform.SetParent(m_Scroll.content, false);
             obj.name = i.ToString("d2");
             deskInfo = new RoomDeskInfo();
-            deskInfo.deskTfm = obj.transform.FindChild("ImageBG");
+            deskInfo.deskTfm = obj.transform.Find("ImageBG");
             m_dictIndexDesks[i] = deskInfo;
 
-            deskInfo.deskTfm.FindChild("Image_table/TextNum").GetComponent<Text>().text = obj.name;
+            deskInfo.deskTfm.Find("Image_table/TextNum").GetComponent<Text>().text = obj.name;
             for (sbyte j = 0; j < playerNumPerDesk; j++)
             {
-                tfm = deskInfo.deskTfm.FindChild("Image_player_" + (j + 1));
+                tfm = deskInfo.deskTfm.Find("Image_player_" + (j + 1));
                 ushort desk = i;
                 sbyte sit = j;
-                tfm.FindChild("Button_seat").GetComponent<Button>().onClick.AddListener(() =>
+                tfm.Find("Button_seat").GetComponent<Button>().onClick.AddListener(() =>
                 {
                     OnClickSit(desk, sit);
                 });
@@ -660,10 +660,10 @@ public class MatchRoom : MonoBehaviour
     {
         m_ChairList.Clear();
         ChairInfo ci;
-        UnityEngine.Transform tfm = TableTfm.FindChild("table");
+        UnityEngine.Transform tfm = TableTfm.Find("table");
         for (byte i = 1; i <= deskMaxPlayerCount; i++)
         {
-            Transform child = tfm.FindChild("Player_" + i);
+            Transform child = tfm.Find("Player_" + i);
             if (child == null)
                 continue;
 
@@ -877,7 +877,7 @@ public class MatchRoom : MonoBehaviour
     {
         CustomAudio.GetInstance().PlayCustomAudio(1002);
 
-        TableTfm.FindChild("bottom/Button_Ready").GetComponent<Button>().interactable = false;
+        TableTfm.Find("bottom/Button_Ready").GetComponent<Button>().interactable = false;
 
         UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_CM_APPLYREADY);
         msg.Add((byte)GameMain.hall_.GameBaseObj.GetGameType());
@@ -895,7 +895,7 @@ public class MatchRoom : MonoBehaviour
     {
         if (show)
         {
-            if (!TableTfm.FindChild("bottom/Button_Ready").GetComponent<Button>().interactable)
+            if (!TableTfm.Find("bottom/Button_Ready").GetComponent<Button>().interactable)
                 return;
         }
 

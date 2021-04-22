@@ -127,7 +127,7 @@ using UnityEngine.UI;
         {
             bMasked = value;
 
-            Transform tfm = transform.FindChild("image_Mask");
+            Transform tfm = transform.Find("image_Mask");
             if(tfm != null)
                 tfm.gameObject.SetActive(bMasked);
         }
@@ -150,10 +150,10 @@ using UnityEngine.UI;
         }
         go.SetActive(true);
 
-        Transform tfm = go.transform.FindChild("Image_zhuang");
+        Transform tfm = go.transform.Find("Image_zhuang");
         if (tfm != null)
             tfm.gameObject.SetActive(showMask);
-        tfm = go.transform.FindChild("image_Mask");
+        tfm = go.transform.Find("image_Mask");
         if (tfm != null)
             tfm.gameObject.SetActive(false);
     }
