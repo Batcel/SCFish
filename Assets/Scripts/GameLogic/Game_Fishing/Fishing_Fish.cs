@@ -2,11 +2,12 @@
 using System.Collections;
 using SWS;
 using DG.Tweening;
-using XLua;
+
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-[Hotfix]public class Fishing_Fish : MonoBehaviour
+
+public class Fishing_Fish : MonoBehaviour
 {
     public delegate void VoidDelegate(Fishing_Fish fish);
     public VoidDelegate OnDeath;
@@ -28,7 +29,9 @@ using UnityEngine.UI;
     public void Init(CGame_Fishing game, splineMove move, uint index, byte typeId)
     {
         AssetBundle ab = game.FishingAssetBundle;
-        m_Animator = GetComponent<Animator>();        m_Animator.speed = 0f;        m_SplineMove = move;
+        m_Animator = GetComponent<Animator>();
+        m_Animator.speed = 0f;
+        m_SplineMove = move;
         m_nOnlyId = index;
         m_nTypeId = typeId;
 
@@ -255,7 +258,8 @@ using UnityEngine.UI;
         CGame_Fishing game = fish.m_CatchRole.GameBase;
         AssetBundle ab = game.FishingAssetBundle;
         Canvas cv = game.GameCanvas;
-        Transform root = cv.transform.Find("Root");
+        Transform root = cv.transform.Find("Root");
+
         GameObject prefab;
 
         GameObject big = null;
@@ -266,12 +270,14 @@ using UnityEngine.UI;
             big.transform.SetParent(root, false);
             big.transform.localPosition = center;
             game.m_AddItems.Add(big);
-            Camera.main.DOShakePosition(1f, 1f).OnComplete(()=> 
+
+            Camera.main.DOShakePosition(1f, 1f).OnComplete(()=> 
             {
                 Camera.main.transform.position = game.CameraSourcePos;
             });
 
-            CustomAudioDataManager.GetInstance().PlayAudio(1004);        }
+            CustomAudioDataManager.GetInstance().PlayAudio(1004);
+        }
         else
             CustomAudioDataManager.GetInstance().PlayAudio(1003);
 

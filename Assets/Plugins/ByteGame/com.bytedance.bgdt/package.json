@@ -1,11 +1,14 @@
 {
   "displayName": "ByteGame Develop Tools",
   "name": "com.bytedance.bgdt",
-  "version": "2.0.112",
-  "unity": "2019.1",
+  "version": "2.0.124",
   "description": "ByteGame Develop Tools",
   "keywords": [],
   "category": "Libraries",
-  "dependencies": {
-  }
+  "links": [
+    {
+      "label": "Document | 文档",
+      "url": "https://bytedance.feishu.cn/docs/doccn0wCFwoWGt3hIEVSntpymn5"
+    }
+  ]
 }

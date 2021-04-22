@@ -1,1 +1,0 @@
-﻿using USocket.Messages;public interface Ex_IBaseUI {    void Update();    //void AfterLogin(uint subMsgType, UMessage _ms);}

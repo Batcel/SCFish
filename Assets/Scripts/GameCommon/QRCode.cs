@@ -3,9 +3,10 @@
 using ZXing;
 using ZXing.QrCode;
 using System.IO;
-using XLua;
 
-[LuaCallCSharp]public class QRCode
+
+
+public class QRCode
 {
     static Color32[] Encode(string textForEncoding, int width, int height)
     {

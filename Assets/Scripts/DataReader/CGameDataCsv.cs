@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using XLua;
 
-/// <summary>/// 游戏数据/// </summary>[LuaCallCSharp] public class GameData{    public byte   GameID;                    //GameID        public string GameName;                  //游戏名称    public string GameIcon;                  //游戏ICON
+
+/// <summary>/// 游戏数据/// </summary> public class GameData{    public byte   GameID;                    //GameID        public string GameName;                  //游戏名称    public string GameIcon;                  //游戏ICON
     public string GameSceneName;             //游戏场景名
     public string SceneABName;               //场景资源包名称
     public string ResourceABName;            //游戏资源包名称
     public byte   BundleTotalSize;           //场景和资源asset包的总大小
-    public string GameTextIcon;              //游戏文字图标};/// <summary>/// 商城商品数据管理/// </summary>[LuaCallCSharp]public class CGameDataMgr{    private Dictionary<byte, GameData> GameDataDictionary;
+    public string GameTextIcon;              //游戏文字图标};/// <summary>/// 商城商品数据管理/// </summary>public class CGameDataMgr{    private Dictionary<byte, GameData> GameDataDictionary;
     private Dictionary<float, string> MasterLvDictionary;
 
 

@@ -3,12 +3,12 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using USocket.Messages;
 using System.Collections;
-using XLua;
+
 
 /// <summary>
 /// 玩家排行榜信息
 /// </summary>
-[LuaCallCSharp]
+
 public class CPlayerRankingInfo
 {
     public string PlayerName ;
@@ -23,7 +23,7 @@ public class CPlayerRankingInfo
 /// <summary>
 /// 游戏比赛排行榜
 /// </summary>
-[Hotfix]
+
 public class CGameContestRankingTifings
 {
     private Transform MainTransform;
@@ -136,12 +136,23 @@ public class CGameContestRankingTifings
     /// </summary>
     private void LoadChessRankingResource()
     {
-        AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);        if (bundle == null)            return;        if (MainTransform == null)        {            RankPlayerList.Clear();            MainTransform = ((GameObject)GameMain.instantiate(bundle.LoadAsset("Lobby_Matchranking_20"))).transform;            MainTransform.gameObject.SetActive(false);            if (RightChessScrolllRect == null)
+        AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);
+        if (bundle == null)
+            return;
+
+        if (MainTransform == null)
+        {
+            RankPlayerList.Clear();
+            MainTransform = ((GameObject)GameMain.instantiate(bundle.LoadAsset("Lobby_Matchranking_20"))).transform;
+
+            MainTransform.gameObject.SetActive(false);
+            if (RightChessScrolllRect == null)
             {
                 RightChessScrolllRect = MainTransform.Find("Imagebg/Viewport_tournament").GetComponent<ScrollRect>();
             }
             CreateGameRankingPlayerUIOjbect(50,true);
-            RightChessScrolllRect.onValueChanged.AddListener(OnScrollValueChange);        }
+            RightChessScrolllRect.onValueChanged.AddListener(OnScrollValueChange);
+        }
     }
 
     /// <summary>

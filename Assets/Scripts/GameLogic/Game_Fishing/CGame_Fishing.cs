@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using USocket.Messages;
-using XLua;
+
 
 //捕鱼的游戏状态
-[LuaCallCSharp]
+
 public enum FishGameState_Enum
 {
     FishGameState_Init,
@@ -25,7 +25,7 @@ public enum FishGameState_Enum
 };
 
 
-[LuaCallCSharp]
+
 public class CannonSwitchData
 {
     public bool m_bLock = false;
@@ -33,7 +33,7 @@ public class CannonSwitchData
     public int m_nDiamondLimit;
 }
 
-[LuaCallCSharp]
+
 public class SkillData
 {
     public byte m_nLeftNum;
@@ -41,7 +41,7 @@ public class SkillData
 
 
 //捕鱼技能的枚举
-[LuaCallCSharp]
+
 public enum FishingSkill_enum
 {
     FISHINGSKILL_Init = 0,
@@ -51,7 +51,7 @@ public enum FishingSkill_enum
     FISHINGSKILL
 };
 
-[LuaCallCSharp]
+
 public enum FishType_Enum
 {
     FishType_Init = 0,
@@ -69,7 +69,7 @@ public enum FishType_Enum
 
 
 
-[Hotfix]
+
 public class CGame_Fishing : CGameBase
 {
     public Transform MainUITfm { get; private set; }

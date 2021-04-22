@@ -1,9 +1,15 @@
-using XLua;
+
+
+
 /// <summary>
 /// 游戏类型枚举
 /// </summary>
-[LuaCallCSharp]
-public enum GameKind_Enum{    GameKind_None = -1,    GameKind_CarPort,           //车行
+
+public enum GameKind_Enum
+{
+    GameKind_None = -1,
+
+    GameKind_CarPort,           //车行
     GameKind_DiuDiuLe,          //丢丢乐						
     GameKind_LaBa,              //拉霸
     GameKind_ForestDance,       //森林舞会
@@ -24,9 +30,10 @@ public enum GameKind_Enum{    GameKind_None = -1,    GameKind_CarPort,      
     GameKind_HongZhong,         //红中麻将
     GameKind_Answer,            //答题赛
     GameKind_Chess,             //象棋
-    GameKind_Max}
+    GameKind_Max
+}
 
-[LuaCallCSharp]
+
 public enum GameTye_Enum
 {
     GameType_Normal,

@@ -16,8 +16,8 @@
 
 
   <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="24" />
+        android:minSdkVersion="19"
+        android:targetSdkVersion="29" />
 
     <application
         android:icon="@drawable/app_icon"        

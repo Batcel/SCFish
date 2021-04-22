@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using USocket.Messages;
-using XLua;[Hotfix]public class Activity
+
+
+
+public class Activity
 {
     Transform SignInTfm, OldPlayerTfm;
     byte m_nSignState = 0;
@@ -22,9 +25,16 @@ using XLua;[Hotfix]public class Activity
         AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);
         if (bundle)
         {
-            Transform tfm = mainui.transform.Find("Panelbottom/Left");            Button btn = tfm.Find("Button_checkin").GetComponent<Button>();            btn.onClick.RemoveAllListeners();            btn.onClick.AddListener(() => ShowSignIn(true));            m_OldPlayerBtn = tfm.Find("Button_oldplayer").gameObject;
+            Transform tfm = mainui.transform.Find("Panelbottom/Left");
+
+            Button btn = tfm.Find("Button_checkin").GetComponent<Button>();
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() => ShowSignIn(true));
+
+            m_OldPlayerBtn = tfm.Find("Button_oldplayer").gameObject;
             btn = m_OldPlayerBtn.GetComponent<Button>();
-            btn.onClick.RemoveAllListeners();            btn.onClick.AddListener(() => ShowOldPlayer(true));
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() => ShowOldPlayer(true));
 
             UnityEngine.Object obj;
             if(SignInTfm == null)
@@ -222,7 +232,9 @@ using XLua;[Hotfix]public class Activity
 
     void OnClickSign()
     {
-        UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_GETWEEKOROLDREWORD);        msg.Add((byte)1);        msg.Add(GameMain.hall_.GetPlayerId());
+        UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_GETWEEKOROLDREWORD);
+        msg.Add((byte)1);
+        msg.Add(GameMain.hall_.GetPlayerId());
         NetWorkClient.GetInstance().SendMsg(msg);
     }
 
@@ -235,13 +247,17 @@ using XLua;[Hotfix]public class Activity
             CCustomDialog.OpenCustomConfirmUI(1402);
             return;
         }
-        UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_CM_PLAYERAPPLYBINDINVITE);        msg.Add(GameMain.hall_.GetPlayerId());
-        msg.Add(field.text);        NetWorkClient.GetInstance().SendMsg(msg);
+        UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_CM_PLAYERAPPLYBINDINVITE);
+        msg.Add(GameMain.hall_.GetPlayerId());
+        msg.Add(field.text);
+        NetWorkClient.GetInstance().SendMsg(msg);
     }
 
     void OnClickGift()
     {
-        UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_GETWEEKOROLDREWORD);        msg.Add((byte)2);        msg.Add(GameMain.hall_.GetPlayerId());
+        UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_GETWEEKOROLDREWORD);
+        msg.Add((byte)2);
+        msg.Add(GameMain.hall_.GetPlayerId());
         NetWorkClient.GetInstance().SendMsg(msg);
     }
 
@@ -269,7 +285,8 @@ using XLua;[Hotfix]public class Activity
         Transform tfm = ((GameObject)GameMain.instantiate(obj)).transform;
         tfm.SetParent(SignInTfm.Find("ImageBG/Anime"), false);
 
-        AudioManager.Instance.PlaySound(GameDefine.HallAssetbundleName, "lingjiang");
+        AudioManager.Instance.PlaySound(GameDefine.HallAssetbundleName, "lingjiang");
+
         GameMain.WaitForCall(1f, () =>
         {
             GameObject.Destroy(tfm.gameObject);

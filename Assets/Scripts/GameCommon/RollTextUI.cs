@@ -3,13 +3,13 @@
 
 using System.Collections.Generic;using System.IO;
 using UnityEngine;using UnityEngine.UI;
-using XLua;
+
 using UnityEngine.EventSystems;
 using USocket.Messages;
 
 
 
-/// <summary>/// 滚动文本类(跑马灯)/// </summary>[Hotfix]
+/// <summary>/// 滚动文本类(跑马灯)/// </summary>
 public class CRollTextUI{    private static CRollTextUI instance = new CRollTextUI();
 
     private bool bRollTickPause;

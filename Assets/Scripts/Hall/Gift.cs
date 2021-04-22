@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DragonBones;
-using XLua;
 
-[Hotfix]
+
+
 public class Gift
 {
     GameObject discountobj;

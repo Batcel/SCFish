@@ -1,18 +1,26 @@
-//create by Batcel 2017-12-29
+
+//create by Batcel 2017-12-29
 
 
-using System.Collections.Generic;using System.IO;
-using UnityEngine;using UnityEngine.UI;
-using XLua;
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+using UnityEngine.UI;
+
 using UnityEngine.EventSystems;
-using USocket.Messages;public class TrumpetData
+using USocket.Messages;
+
+
+public class TrumpetData
 {
     public string SendPlayerName;
     public string SendContent;
 }
 
-/// <summary>/// ����/// </summary>
-[Hotfix]
+/// <summary>
+/// ����
+/// </summary>
+
 public class CTrumpetUI
 {
     private static CTrumpetUI instance = new CTrumpetUI();
@@ -29,7 +37,10 @@ public class CTrumpetUI
         RegitserMsgHandle();
     }
 
-    public static CTrumpetUI Instance    {        get { return instance; }    }
+    public static CTrumpetUI Instance
+    {
+        get { return instance; }
+    }
 
 
     private void RegitserMsgHandle()
@@ -49,12 +60,24 @@ public class CTrumpetUI
     }
 
     //��ʼ�����ȹ��ܽ���
-    private bool InitTrumpetUI()    {        AssetBundle bd = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);
+    private bool InitTrumpetUI()
+    {
+        AssetBundle bd = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);
         if (bd == null)
-            return false;        if (TrumpetMessageSendUIPrefab == null)            TrumpetMessageSendUIPrefab = bd.LoadAsset("Tips_Marquee_Popup") as Object;        if(TrumpetMessageSendUIObj == null)        {                       TrumpetMessageSendUIObj = GameMain.instantiate(TrumpetMessageSendUIPrefab) as GameObject;
+            return false;
+        if (TrumpetMessageSendUIPrefab == null)
+            TrumpetMessageSendUIPrefab = bd.LoadAsset("Tips_Marquee_Popup") as Object;
+        if(TrumpetMessageSendUIObj == null)
+        {           
+            TrumpetMessageSendUIObj = GameMain.instantiate(TrumpetMessageSendUIPrefab) as GameObject;
             TrumpetMessageSendUIObj.SetActive(false);
             TrumpetMessageSendUIObj.transform.SetParent(GameObject.Find("Canvas/Root").transform, false);        
-        }        InitTrumpetUIEvent();        return true;    }
+        }
+
+        InitTrumpetUIEvent();
+
+        return true;
+    }
 
     //��ʼ���Ƚ��水ť����¼�
     private void InitTrumpetUIEvent()
@@ -142,7 +165,9 @@ public class CTrumpetUI
             GameObject marqueelist = TrumpetMessageSendUIObj.transform.Find("ImageMask/MarqueeViewport/MarqueeContent").gameObject;
             GameMain.hall_.ClearChilds(marqueelist);
 
-            AssetBundle bd = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);            if (bd == null)                return;
+            AssetBundle bd = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);
+            if (bd == null)
+                return;
             Object trumpettextprefab = bd.LoadAsset("Marquee_text") as Object;
 
             for (int index = TrumpetHistroyList.Count - 1; index >= 0; index--)
