@@ -2,7 +2,12 @@
     {
         if(ManifestAsssetbundle == null)
         {
+#if ScFish
+            string path = GameCommon.GetAppStreamingAssetPath() + GameDefine.DependenciesAssetBundleName;
+#else
             string path = GameDefine.AssetBundleSavePath + GameDefine.DependenciesAssetBundleName;
+#endif
+
 
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN        if (!Luancher.UpdateWithLuncher)
             {
@@ -68,7 +73,11 @@
             return abRef.assetBundle;        else
         {
             //尝试加载一下
+#if ScFish
+            if (!LoadAssetBundleFromLocal(GameCommon.GetAppStreamingAssetPath(), abname))
+#else
             if (!LoadAssetBundleFromLocal(GameDefine.AssetBundleSavePath, abname))
+#endif
                 return null;
             else
                 dictAssetBundleRefs.TryGetValue(abname, out abRef);
@@ -90,5 +99,10 @@
         //callback(abcr.assetBundle);
 
         //Debug.Log("加载bundle名称:" + abname + " 结束:" + DateTime.Now.Ticks);
+
+
+
+
+
 
         AssetBundleRef abRef = new AssetBundleRef(path, abname, 1);        abRef.assetBundle = bundle;        AddAssetBundle(abname, abRef);        return true;    }    /// <summary>    /// 删除容器中保存的资源数据    /// </summary>    /// <param name="name">名称</param>    /// <param name="bUnloadAllObj">表示是否删除资源包的所有资源</param>    public static void UnloadAssetBundle(string name,bool bUnloadAllObj = true)    {        AssetBundleRef abRef;        if (dictAssetBundleRefs.TryGetValue(name, out abRef))        {            abRef.assetBundle.Unload(bUnloadAllObj);            abRef.assetBundle = null;            dictAssetBundleRefs.Remove(name);        }    }}
