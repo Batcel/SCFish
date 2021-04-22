@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using XLua;
+
 /// <summary>
 /// 数字密码输入界面
 /// </summary>
-[Hotfix]
+
 public class NumberPanel {
 
     /// <summary>
@@ -67,38 +67,114 @@ public class NumberPanel {
 
     /// <summary>
     /// 初始化数字密码界面输入事件
-    /// </summary>    private void InitNumberPanelEvent()    {        UnityEngine.Transform buttonsBGTransform = NumberPanelGameObjetct.transform.Find("ImageBG/ImageBG");        for (int index = 0; index < 10; index++)        {            int temp = index;            GameObject number = buttonsBGTransform.Find("Button_" + index.ToString()).gameObject;            XPointEvent.AutoAddListener(number, OnClickNumberEvent, temp);        }
+    /// </summary>
+    private void InitNumberPanelEvent()
+    {
+        UnityEngine.Transform buttonsBGTransform = NumberPanelGameObjetct.transform.Find("ImageBG/ImageBG");
+        for (int index = 0; index < 10; index++)
+        {
+            int temp = index;
+            GameObject number = buttonsBGTransform.Find("Button_" + index.ToString()).gameObject;
+            XPointEvent.AutoAddListener(number, OnClickNumberEvent, temp);
+        }
 
-        UnityEngine.Transform closeBtnTransform = NumberPanelGameObjetct.transform.Find("ImageBG/Button_close");        XPointEvent.AutoAddListener(closeBtnTransform.gameObject, OnCloseNumberPanelEvent, null);
+        UnityEngine.Transform closeBtnTransform = NumberPanelGameObjetct.transform.Find("ImageBG/Button_close");
+        XPointEvent.AutoAddListener(closeBtnTransform.gameObject, OnCloseNumberPanelEvent, null);
 
-        UnityEngine.Transform reinputTransform = buttonsBGTransform.Find("Button_delete");        XPointEvent.AutoAddListener(reinputTransform.gameObject, OnClickReinputEvent, null);        UnityEngine.Transform backspaceTransform = buttonsBGTransform.Find("Button_backspace");        XPointEvent.AutoAddListener(backspaceTransform.gameObject, OnClickBackSpaceEvent, null);    }
+        UnityEngine.Transform reinputTransform = buttonsBGTransform.Find("Button_delete");
+        XPointEvent.AutoAddListener(reinputTransform.gameObject, OnClickReinputEvent, null);
+
+        UnityEngine.Transform backspaceTransform = buttonsBGTransform.Find("Button_backspace");
+        XPointEvent.AutoAddListener(backspaceTransform.gameObject, OnClickBackSpaceEvent, null);
+    }
 
     /// <summary>
     /// 数字密码按钮点击事件
-    /// </summary>    private void OnClickNumberEvent(EventTriggerType eventtype, object button, PointerEventData eventData)    {        if (eventtype == EventTriggerType.PointerClick)        {            CustomAudio.GetInstance().PlayCustomAudio(1002);            if (InputNumberText.Length < 5)
+    /// </summary>
+    private void OnClickNumberEvent(EventTriggerType eventtype, object button, PointerEventData eventData)
+    {
+        if (eventtype == EventTriggerType.PointerClick)
+        {
+            CustomAudio.GetInstance().PlayCustomAudio(1002);
+            if (InputNumberText.Length < 5)
             {
-                int number = (int)button;                InputNumberText += number.ToString();
+                int number = (int)button;
+                InputNumberText += number.ToString();
                 UpdateInputText();
-            }        }    }
+            }
+        }
+    }
 
     /// <summary>
     /// 密码重置事件
-    /// </summary>    private void OnClickReinputEvent(EventTriggerType eventtype, object button, PointerEventData eventData)    {        if (eventtype == EventTriggerType.PointerClick)        {            CustomAudio.GetInstance().PlayCustomAudio(1002);
-            ResetNumberInputTextData();        }    }
+    /// </summary>
+    private void OnClickReinputEvent(EventTriggerType eventtype, object button, PointerEventData eventData)
+    {
+        if (eventtype == EventTriggerType.PointerClick)
+        {
+            CustomAudio.GetInstance().PlayCustomAudio(1002);
+            ResetNumberInputTextData();
+        }
+    }
 
     /// <summary>
     /// 删除当前输入事件
-    /// </summary>    private void OnClickBackSpaceEvent(EventTriggerType eventtype, object button, PointerEventData eventData)    {        if (eventtype == EventTriggerType.PointerClick)        {            CustomAudio.GetInstance().PlayCustomAudio(1002);            if (!string.IsNullOrEmpty(InputNumberText))            {
-                InputNumberText = InputNumberText.Remove(InputNumberText.Length - 1, 1);            }            UpdateInputText();        }    }
+    /// </summary>
+    private void OnClickBackSpaceEvent(EventTriggerType eventtype, object button, PointerEventData eventData)
+    {
+        if (eventtype == EventTriggerType.PointerClick)
+        {
+            CustomAudio.GetInstance().PlayCustomAudio(1002);
+
+            if (!string.IsNullOrEmpty(InputNumberText))
+            {
+                InputNumberText = InputNumberText.Remove(InputNumberText.Length - 1, 1);
+            }
+
+            UpdateInputText();
+        }
+    }
 
     /// <summary>
     /// 关闭界面事件
     /// </summary>
-    private void OnCloseNumberPanelEvent(EventTriggerType eventtype, object button, PointerEventData eventData)    {        if (eventtype == EventTriggerType.PointerClick)        {            CustomAudio.GetInstance().PlayCustomAudio(1002);            SetNumberPanelActive(false);        }    }
+    private void OnCloseNumberPanelEvent(EventTriggerType eventtype, object button, PointerEventData eventData)
+    {
+        if (eventtype == EventTriggerType.PointerClick)
+        {
+            CustomAudio.GetInstance().PlayCustomAudio(1002);
+            SetNumberPanelActive(false);
+        }
+    }
 
     /// <summary>
     /// 更新数字密码
-    /// </summary>    void UpdateInputText()    {        if (InputNumberText == null || NumberPanelGameObjetct == null)            return;        string oneName = "Text";        for (int index = 0; index < 5; index++)        {            if (index != 0)                oneName = "Text (" + index.ToString() + ")";            Text oneNumber = NumberPanelGameObjetct.transform.Find("ImageBG").Find("InputField").                Find("ImageTextBG").Find(oneName).gameObject.GetComponent<Text>();            if (index >= InputNumberText.Length)                oneNumber.text = string.Empty;            else                oneNumber.text = InputNumberText.Substring(index, 1);        }        if (InputNumberText.Length >= 5)        {            uint password = 0;            uint.TryParse(InputNumberText, out password);            CallBackSendMsgDelegate(password);            ResetNumberInputTextData();        }
+    /// </summary>
+    void UpdateInputText()
+    {
+        if (InputNumberText == null || NumberPanelGameObjetct == null)
+            return;
+
+        string oneName = "Text";
+        for (int index = 0; index < 5; index++)
+        {
+            if (index != 0)
+                oneName = "Text (" + index.ToString() + ")";
+            Text oneNumber = NumberPanelGameObjetct.transform.Find("ImageBG").Find("InputField").
+                Find("ImageTextBG").Find(oneName).gameObject.GetComponent<Text>();
+            if (index >= InputNumberText.Length)
+                oneNumber.text = string.Empty;
+            else
+                oneNumber.text = InputNumberText.Substring(index, 1);
+        }
+
+        if (InputNumberText.Length >= 5)
+        {
+            uint password = 0;
+            uint.TryParse(InputNumberText, out password);
+            CallBackSendMsgDelegate(password);
+            ResetNumberInputTextData();
+        }
         if(TextTipObject)
         {
             TextTipObject.SetActive(InputNumberText.Length == 0);

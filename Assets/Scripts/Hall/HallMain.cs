@@ -6,13 +6,13 @@ using UnityEngine.UI;
 using USocket.Messages;
 using UnityEngine.EventSystems;
 using DragonBones;
-using XLua;
+
 using System.IO;
 using System;
 using UnityEngine.Events;
 
 //游戏请求录像数据消息进度
-[LuaCallCSharp]
+
 public enum GameRecordMsgState
 {
     RecordMsg_Default, //默认值
@@ -20,7 +20,7 @@ public enum GameRecordMsgState
     RecordMsg_End,     //收到回复消息
 }
 
-[Hotfix]
+
 public class HallMain
 {
     GameObject mainui_;
@@ -363,7 +363,7 @@ public class HallMain
         CMsgDispatcher.GetInstance().RegMsgDictionary(
             (uint)GameCity.EMSG_ENUM.CCMsg_FIVEINROW_SM_BACKISAGREEINVATE, InvateGameSuccess);          //收到邀请进入游戏
 
-        CMsgDispatcher.GetInstance().RegMsgDictionary(
+        /*CMsgDispatcher.GetInstance().RegMsgDictionary(
             (uint)GameCity.CarportMsg_enum.CarportMsg_SM_LOGIN, BackCarPortLogin);         //车行游戏消息
         CMsgDispatcher.GetInstance().RegMsgDictionary(
             (uint)GameCity.Diudiule_enum.DiudiuleMsg_SM_LOGIN, BackDiuDiuLeLogin);       //丢丢乐游戏消息
@@ -373,15 +373,15 @@ public class HallMain
             (uint)GameCity.Diudiule_enum.DiudiuleMsg_SM_NOGAMESCENE, BackDiuDiuLeNoGameScene);
 
         CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.SlotSecondMsg.LabaMsg_SM_LOGIN, BackSlotLogin);               //拉霸遊戲消息
+            (uint)GameCity.SlotSecondMsg.LabaMsg_SM_LOGIN, BackSlotLogin);  */             //拉霸遊戲消息
         CMsgDispatcher.GetInstance().RegMsgDictionary(
             (uint)GameCity.Forest_enum.ForestMsg_SM_LOGIN, BackForestDanceLogin); //森林舞会遊戲消息
-        CMsgDispatcher.GetInstance().RegMsgDictionary(
+        /*CMsgDispatcher.GetInstance().RegMsgDictionary(
             (uint)GameCity.EMSG_ENUM.CCMsg_FIVEINROW_SM_LOGIN, BackFiveLogin); //五子棋遊戲消息
         CMsgDispatcher.GetInstance().RegMsgDictionary(
             (uint)GameCity.EMSG_ENUM.CCMsg_TEXASPOKER_SM_LOGIN, BackTexasLogin); //德州遊戲消息
         CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CCMsg_BULLKILL_SM_LOGIN, BackBullAllKillLogin); //通杀牛牛遊戲消息
+            (uint)GameCity.EMSG_ENUM.CCMsg_BULLKILL_SM_LOGIN, BackBullAllKillLogin); *///通杀牛牛遊戲消息
         CMsgDispatcher.GetInstance().RegMsgDictionary(
             (uint)GameCity.EMSG_ENUM.CCMsg_BLACKJACK_SM_LOGIN, BackCustomLogin); //21点遊戲消息
         CMsgDispatcher.GetInstance().RegMsgDictionary(
@@ -390,8 +390,8 @@ public class HallMain
              (uint)GameCity.EMSG_ENUM.CCMsg_BULLHUNDRED_SM_LOGIN, BackCustomLogin);
         CMsgDispatcher.GetInstance().RegMsgDictionary(
              (uint)GameCity.EMSG_ENUM.CCMsg_FISHING_SM_LOGIN, BackCustomLogin);
-        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CCMsg_BULLHAPPY_SM_LOGIN, BackBullHappyLogin); //抢庄牛牛游戏消息
+        /*CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CCMsg_BULLHAPPY_SM_LOGIN, BackBullHappyLogin); *///抢庄牛牛游戏消息
         CMsgDispatcher.GetInstance().RegMsgDictionary(
              (uint)GameCity.EMSG_ENUM.CCMsg_MAHJONG_SM_LOGIN, BackCustomContestLogin);
         CMsgDispatcher.GetInstance().RegMsgDictionary(
@@ -882,7 +882,7 @@ public class HallMain
     {
         if (eventtype == EventTriggerType.PointerClick)
         {
-            FIR_AudioDataManager.GetInstance().PlayAudio(1001);
+            //FIR_AudioDataManager.GetInstance().PlayAudio(1001);
             InvateMsg msg = (InvateMsg)button;
             UMessage invateMsg = new UMessage((uint)GameCity.EMSG_ENUM.CCMsg_FIVEINROW_CM_INVATECLUBMEMBER);
 
@@ -899,7 +899,7 @@ public class HallMain
     {
         if (eventtype == EventTriggerType.PointerClick)
         {
-            FIR_AudioDataManager.GetInstance().PlayAudio(1001);
+            //FIR_AudioDataManager.GetInstance().PlayAudio(1001);
             CloseFriendList();
         }
     }
@@ -1000,10 +1000,10 @@ public class HallMain
 
         UMessage loginGame = new UMessage((uint)GameCity.Diudiule_enum.DiudiuleMsg_CM_LOGIN);
 
-        Ex_CMLogin ex_CMLogin = new Ex_CMLogin();
+        /*Ex_CMLogin ex_CMLogin = new Ex_CMLogin();
         ex_CMLogin.diuMsgType = (uint)GameCity.Diudiule_enum.DiudiuleMsg_CM_LOGIN;
         ex_CMLogin.userid = PlayerObj.GetPlayerId();
-        ex_CMLogin.SetSendData(loginGame);
+        ex_CMLogin.SetSendData(loginGame);*/
         SendMsgToRoomSer(loginGame);
     }
 
@@ -1333,7 +1333,7 @@ public class HallMain
             return false;
         }
 
-        FD_DataCenter.GetInstance().condition.ReadData(_ms);
+        //FD_DataCenter.GetInstance().condition.ReadData(_ms);
 
         return true;
     }
@@ -1378,24 +1378,25 @@ public class HallMain
 
     void ReadCustomData(GameKind_Enum gameId, UMessage _ms)
     {
-        if (gameId == GameKind_Enum.GameKind_BlackJack)
+        /*if (gameId == GameKind_Enum.GameKind_BlackJack)
             BlackJack_Data.GetInstance().ReadData(_ms);
         else if (gameId == GameKind_Enum.GameKind_BullHundred)
             BullHundred_Data.GetInstance().ReadData(_ms);
         else if (gameId == GameKind_Enum.GameKind_LandLords)
             LandLords_Data.GetInstance().ReadData(_ms);
-        else if (gameId == GameKind_Enum.GameKind_Fishing)
+        else */
+        if (gameId == GameKind_Enum.GameKind_Fishing)
             Fishing_Data.GetInstance().ReadData(_ms);
-        else if (gameId == GameKind_Enum.GameKind_Mahjong || gameId == GameKind_Enum.GameKind_YcMahjong ||
+       /* else if (gameId == GameKind_Enum.GameKind_Mahjong || gameId == GameKind_Enum.GameKind_YcMahjong ||
                  gameId == GameKind_Enum.GameKind_CzMahjong || gameId == GameKind_Enum.GameKind_HongZhong)
             Mahjong_Data.GetInstance().ReadData(_ms);
         else if (gameId == GameKind_Enum.GameKind_GuanDan)
             GuanDan_Data.GetInstance().ReadData(_ms);
         else if(gameId == GameKind_Enum.GameKind_Answer)
-            Answer_Data.GetInstance().ReadData(_ms);
+           Answer_Data.GetInstance().ReadData(_ms);*/
     }
 
-    bool BackCarPortLogin(uint _msgType, UMessage _ms)
+   /* bool BackCarPortLogin(uint _msgType, UMessage _ms)
     {
         GameData gamedata = CCsvDataManager.Instance.GameDataMgr.GetGameData((byte)GameKind_Enum.GameKind_CarPort);
         if (gamedata != null)
@@ -1574,7 +1575,7 @@ public class HallMain
             Debug.Log("游戏id:1不存在");
 
         return true;
-    }
+    }*/
 
 
     /// <summary>
@@ -1985,7 +1986,7 @@ public class HallMain
 
         switch (CurGameId)
         {
-            case GameKind_Enum.GameKind_CarPort:
+            /*case GameKind_Enum.GameKind_CarPort:
                 {
                     GameBaseObj = new CGame_CheHang();
                 }
@@ -2034,13 +2035,13 @@ public class HallMain
                 {
                     GameBaseObj = new CGame_BullAllKill();
                 }
-                break;
+                break;*/
             case GameKind_Enum.GameKind_Fishing:
                 {
                     GameBaseObj = new CGame_Fishing();
                 }
                 break;
-            case GameKind_Enum.GameKind_BullHappy:
+           /* case GameKind_Enum.GameKind_BullHappy:
                 {
                     GameBaseObj = new CGame_HappyBull();
                 }
@@ -2089,7 +2090,7 @@ public class HallMain
                 {
                     GameBaseObj = new CGame_Chess(gameType);
                 }
-                break;
+                break;*/
         }
 
         if (AutoEnterGameMode)
@@ -2180,7 +2181,7 @@ public class HallMain
                     AppointmentDataManager.AppointmentDataInstance().interruptid = 0;
                 }
 
-                if(LB_DataCenter.Instance().isKickOut)
+                /*if(LB_DataCenter.Instance().isKickOut)
                 {
                     CCustomDialog.OpenCustomConfirmUI(2004);
                     LB_DataCenter.Instance().isKickOut = false;
@@ -2190,7 +2191,7 @@ public class HallMain
                 {
                     CCustomDialog.OpenCustomConfirmUI(1017);
                     CH_DataCenter.Instance().isKickOut = false;
-                }
+                }*/
             }
             if (backState == 1)
             {

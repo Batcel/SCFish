@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using USocket.Messages;
-using XLua;
-[Hotfix]public class RoomDeskInfo
+
+
+
+public class RoomDeskInfo
 {
     public Transform deskTfm = null;
     public bool m_bInited = false;
@@ -14,23 +16,23 @@ using XLua;
         if (!deskTfm)
             return;
 
-        Transform tfm = deskTfm.Find("Image_player_" + (sit + 1));
+        Transform tfm = deskTfm.FindChild("Image_player_" + (sit + 1));
         if (tfm == null)
             return;
 
         if(show)
         {
-            tfm.Find("Button_seat").gameObject.SetActive(false);
-            tfm = tfm.Find("Image_Head");
+            tfm.FindChild("Button_seat").gameObject.SetActive(false);
+            tfm = tfm.FindChild("Image_Head");
             tfm.gameObject.SetActive(true);
             Sprite sp = GameMain.hall_.GetIcon(url, playerid, faceId);
-            tfm.Find("Image_HeadMask/Image_HeadImage").GetComponent<Image>().sprite = sp;
-            tfm.Find("Image_NameBG/TextName").GetComponent<Text>().text = name;
+            tfm.FindChild("Image_HeadMask/Image_HeadImage").GetComponent<Image>().sprite = sp;
+            tfm.FindChild("Image_NameBG/TextName").GetComponent<Text>().text = name;
         }
         else
         {
-            tfm.Find("Button_seat").gameObject.SetActive(true);
-            tfm.Find("Image_Head").gameObject.SetActive(false);
+            tfm.FindChild("Button_seat").gameObject.SetActive(true);
+            tfm.FindChild("Image_Head").gameObject.SetActive(false);
         }
     }
 
@@ -42,7 +44,8 @@ using XLua;
     }
 }
 
-[Hotfix]public class ChairInfo
+
+public class ChairInfo
 {
     public Transform chairTfm;
 
@@ -53,17 +56,17 @@ using XLua;
 
         if (show)
         {
-            chairTfm.Find("Button_sit").gameObject.SetActive(false);
-            Transform tfm = chairTfm.Find("Image_Head");
+            chairTfm.FindChild("Button_sit").gameObject.SetActive(false);
+            Transform tfm = chairTfm.FindChild("Image_Head");
             tfm.gameObject.SetActive(true);
             Sprite sp = GameMain.hall_.GetIcon(url, playerid, faceId);
-            tfm.Find("Image_HeadMask/Image_HeadImage").GetComponent<Image>().sprite = sp;
-            tfm.Find("Image_NameBG/TextName").GetComponent<Text>().text = name;
+            tfm.FindChild("Image_HeadMask/Image_HeadImage").GetComponent<Image>().sprite = sp;
+            tfm.FindChild("Image_NameBG/TextName").GetComponent<Text>().text = name;
         }
         else
         {
-            chairTfm.Find("Button_sit").gameObject.SetActive(true);
-            chairTfm.Find("Image_Head").gameObject.SetActive(false);
+            chairTfm.FindChild("Button_sit").gameObject.SetActive(true);
+            chairTfm.FindChild("Image_Head").gameObject.SetActive(false);
             SetReady(false);
             ShowOffline(false);
         }
@@ -72,17 +75,18 @@ using XLua;
     public void SetReady(bool ready)
     {
         if(chairTfm != null)
-            chairTfm.Find("already").gameObject.SetActive(ready);
+            chairTfm.FindChild("already").gameObject.SetActive(ready);
     }
 
     public void ShowOffline(bool off)
     {
         if (chairTfm != null)
-            chairTfm.Find("Text_offline").gameObject.SetActive(off);
+            chairTfm.FindChild("Text_offline").gameObject.SetActive(off);
     }
 }
 
-[Hotfix]public class MatchRoom : MonoBehaviour
+
+public class MatchRoom : MonoBehaviour
 {
     static MatchRoom m_Instance;
 
@@ -109,21 +113,49 @@ using XLua;
     Dictionary<uint, RoomDeskInfo> m_dictIndexDesks = new Dictionary<uint, RoomDeskInfo>();
     List<ChairInfo> m_ChairList = new List<ChairInfo>();
 
-    public static MatchRoom GetInstance()    {        if (m_Instance == null)            m_Instance = GameMain.Instance.gameObject.AddComponent<MatchRoom>();        m_Instance.LoadMatchingRoomResource();        return m_Instance;    }
+    public static MatchRoom GetInstance()
+    {
+        if (m_Instance == null)
+            m_Instance = GameMain.Instance.gameObject.AddComponent<MatchRoom>();
 
-    void Awake()    {        InitMsgHandle();    }    void InitMsgHandle()    {        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATEBEFOREHANDROOMINFO, HandleRoomInfo);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_APPLYENTERROOMANDSIT, HandleEnterDesk);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATEENTERROOMANDSIT, HandleDeskInfo);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATEENTERROOMANDSITTOREADYALL, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_APPLYLEAVEROOMANDSIT, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATELEAVEROOMANDSIT, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATELEAVEROOMANDSITTOREADYALL, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_APPLYREADY, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATEAPPLYREADY, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_BACKQUITSTARTGAME, HandleEnterDesk);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_KICKOUTROOM, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_UPDATERECHARGETOROOMSER, HandleGameNetMsg);    }
+        m_Instance.LoadMatchingRoomResource();
+
+        return m_Instance;
+    }
+
+    void Awake()
+    {
+        InitMsgHandle();
+    }
+
+    void InitMsgHandle()
+    {
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATEBEFOREHANDROOMINFO, HandleRoomInfo);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_APPLYENTERROOMANDSIT, HandleEnterDesk);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATEENTERROOMANDSIT, HandleDeskInfo);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATEENTERROOMANDSITTOREADYALL, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_APPLYLEAVEROOMANDSIT, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATELEAVEROOMANDSIT, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATELEAVEROOMANDSITTOREADYALL, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_APPLYREADY, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATEAPPLYREADY, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_BACKQUITSTARTGAME, HandleEnterDesk);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_KICKOUTROOM, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_UPDATERECHARGETOROOMSER, HandleGameNetMsg);
+    }
+
     void Start ()
     {
     }
@@ -179,7 +211,9 @@ using XLua;
     /// <summary>
     /// 加载匹配房间资源
     /// </summary>
-    void LoadMatchingRoomResource()    {        if (GameMain.hall_.GameBaseObj == null || RoomTfm != null)
+    void LoadMatchingRoomResource()
+    {
+        if (GameMain.hall_.GameBaseObj == null || RoomTfm != null)
             return;
 
         AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);
@@ -197,15 +231,15 @@ using XLua;
         RoomTfm = obj.transform;
         RoomTfm.SetParent(canvasTfm, false);
 
-        m_Scroll = RoomTfm.Find("PanelGame_").GetComponent<ScrollRect>();
+        m_Scroll = RoomTfm.FindChild("PanelGame_").GetComponent<ScrollRect>();
         m_Scroll.onValueChanged.AddListener(OnScrollValueChange);
         m_Scroll.verticalScrollbar.value = 1f;
 
-        RoomTfm.Find("PanelHead_/Button_Return").GetComponent<Button>().
+        RoomTfm.FindChild("PanelHead_/Button_Return").GetComponent<Button>().
             onClick.AddListener(()=>OnClickReturn(3));
-        RoomTfm.Find("PanelHead_/Button_matching").GetComponent<Button>().
+        RoomTfm.FindChild("PanelHead_/Button_matching").GetComponent<Button>().
             onClick.AddListener(OnClickQuickMatch);
-        obj = RoomTfm.Find("PanelHead_/Image_DiamondFrame").gameObject;
+        obj = RoomTfm.FindChild("PanelHead_/Image_DiamondFrame").gameObject;
         XPointEvent.AutoAddListener(obj, GameMain.hall_.Charge, Shop.SHOPTYPE.SHOPTYPE_DIAMOND);
 
         LoadMatchingTableResource(GameMain.hall_.GameBaseObj.GetGameType(), bundle);
@@ -214,7 +248,9 @@ using XLua;
     /// <summary>
     /// 加载匹配桌子资源
     /// </summary>
-    /// <param name="gameKind">游戏类型</param>    /// <param name="bundle">AB资源包</param>    public void LoadMatchingTableResource(GameKind_Enum gameKind, AssetBundle bundle)
+    /// <param name="gameKind">游戏类型</param>
+    /// <param name="bundle">AB资源包</param>
+    public void LoadMatchingTableResource(GameKind_Enum gameKind, AssetBundle bundle)
     {
         if(bundle == null || TableTfm != null)
         {
@@ -249,18 +285,21 @@ using XLua;
         TableTfm = obj.transform;
         TableTfm.SetParent(canvasTfm, false);
 
-        Button btn = TableTfm.Find("bottom/Button_Invitation").GetComponent<Button>();
+        Button btn = TableTfm.FindChild("bottom/Button_Invitation").GetComponent<Button>();
         btn.onClick.AddListener(OnClickDeskInvitate);
-        btn = TableTfm.Find("bottom/Button_Ready").GetComponent<Button>();
+        btn = TableTfm.FindChild("bottom/Button_Ready").GetComponent<Button>();
         btn.onClick.AddListener(OnClickDeskReady);
         btn.gameObject.SetActive(false);
-        btn = TableTfm.Find("Top/Button_Return").GetComponent<Button>();
+        btn = TableTfm.FindChild("Top/Button_Return").GetComponent<Button>();
         btn.onClick.AddListener(() => OnClickReturn(0));
 
-        m_TipText = TableTfm.Find("Pop-up/ImagereadyTip/Text_time").GetComponent<Text>();
+        m_TipText = TableTfm.FindChild("Pop-up/ImagereadyTip/Text_time").GetComponent<Text>();
 
         UpdateMatchTablePlayerInfo(playerNumPerDesk);
-    }    public void SetUIAsLast()
+    }
+
+
+    public void SetUIAsLast()
     {
         if(m_nBystanderRoom > 0)
         {
@@ -276,10 +315,11 @@ using XLua;
             if(TableTfm)
             {
                 TableTfm.SetAsLastSibling();
-                TableTfm.Find("bottom/Button_Ready").gameObject.SetActive(true);
+                TableTfm.FindChild("bottom/Button_Ready").gameObject.SetActive(true);
             }
         }
-    }
+    }
+
     void Update ()
     {
         if (RoomTfm == null)
@@ -313,11 +353,13 @@ using XLua;
         CustomAudio.GetInstance().PlayCustomAudio(1002);
         if (index == 0)
         {
-            CCustomDialog.OpenCustomWaitUI("正在离开...");
+            CCustomDialog.OpenCustomWaitUI("正在离开...");
+
             UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_CM_APPLYLEAVEROOMANDSIT);
             msg.Add((byte)GameMain.hall_.GameBaseObj.GetGameType());
             msg.Add(GameMain.hall_.GetPlayerId());
-            HallMain.SendMsgToRoomSer(msg);        }
+            HallMain.SendMsgToRoomSer(msg);
+        }
         else if(index == 1)
         {
             GameMain.hall_.GameBaseObj.OnDisconnect(false);
@@ -327,18 +369,21 @@ using XLua;
         {
             UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_CM_PLAYERLEAVEROOMSER);
             msg.Add(GameMain.hall_.GetPlayerId());
-            HallMain.SendMsgToRoomSer(msg);        }
+            HallMain.SendMsgToRoomSer(msg);
+        }
     }
 
     void OnClickQuickMatch()
     {
         CustomAudio.GetInstance().PlayCustomAudio(1002);
-        CCustomDialog.OpenCustomWaitUI("正在进入...");
+        CCustomDialog.OpenCustomWaitUI("正在进入...");
+
         UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_CM_APPLYQUITSTARTGAME);
         msg.Add((byte)GameMain.hall_.GameBaseObj.GetGameType());
         msg.Add(GameMain.hall_.CurRoomIndex);
         msg.Add(GameMain.hall_.GetPlayerId());
-        HallMain.SendMsgToRoomSer(msg);    }
+        HallMain.SendMsgToRoomSer(msg);
+    }
 
     public void ShowTable(bool show, Dictionary<byte, AppointmentRecordPlayer> players = null, byte roomId = 0, uint deskId = 0)
     {
@@ -346,7 +391,7 @@ using XLua;
             return;
 
         InitDesks();
-        Button btn = TableTfm.Find("bottom/Button_Ready").GetComponent<Button>();
+        Button btn = TableTfm.FindChild("bottom/Button_Ready").GetComponent<Button>();
         btn.interactable = true;
         TableTfm.gameObject.SetActive(show);
         foreach (ChairInfo ci in m_ChairList)
@@ -369,9 +414,9 @@ using XLua;
             }
 
             if(roomId != 0)
-                TableTfm.Find("Top/ImageBG/Text_Room/Text_Num").GetComponent<Text>().text = roomId.ToString();
+                TableTfm.FindChild("Top/ImageBG/Text_Room/Text_Num").GetComponent<Text>().text = roomId.ToString();
             if(deskId != 0)
-                TableTfm.Find("Top/ImageBG/Text_table/Text_Num").GetComponent<Text>().text = deskId.ToString();
+                TableTfm.FindChild("Top/ImageBG/Text_table/Text_Num").GetComponent<Text>().text = deskId.ToString();
 
             CustomAudio.GetInstance().PlayCustomAudio(1001, true);
         }
@@ -381,7 +426,9 @@ using XLua;
     {
         if (m_nDeskNum == 0)
             return false;
-        GameCity.EMSG_ENUM eMsg = (GameCity.EMSG_ENUM)_msgType;        switch (eMsg)
+
+        GameCity.EMSG_ENUM eMsg = (GameCity.EMSG_ENUM)_msgType;
+        switch (eMsg)
         {
             case GameCity.EMSG_ENUM.CrazyCityMsg_SM_UPDATEENTERROOMANDSITTOREADYALL:
                 {
@@ -442,7 +489,7 @@ using XLua;
                         ShowKickTip(false);
                    }
                     else
-                        TableTfm.Find("bottom/Button_Ready").GetComponent<Button>().interactable = true;
+                        TableTfm.FindChild("bottom/Button_Ready").GetComponent<Button>().interactable = true;
                 }
                 break;
 
@@ -533,16 +580,25 @@ using XLua;
 
     void UpdateDiamond(long num)
     {
-        RoomTfm.Find("PanelHead_/Image_DiamondFrame/Text_Diamond").GetComponent<Text>().text
+        RoomTfm.FindChild("PanelHead_/Image_DiamondFrame/Text_Diamond").GetComponent<Text>().text
             = num.ToString();
     }
 
     public void ShowRoom(byte gameId)
     {
-        AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);        if (bundle == null)            return;
+        AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);
+        if (bundle == null)
+            return;
 
-        GameData gamedata = CCsvDataManager.Instance.GameDataMgr.GetGameData(gameId);        if (gamedata == null)        {            Debug.Log("初始化游戏失败，id：" + gameId.ToString());            return;        }        RoomTfm.gameObject.SetActive(true);
-        RoomTfm.Find("PanelHead_/Image_Icon").GetComponent<Image>().sprite = bundle.LoadAsset<Sprite>(gamedata.GameTextIcon);
+        GameData gamedata = CCsvDataManager.Instance.GameDataMgr.GetGameData(gameId);
+        if (gamedata == null)
+        {
+            Debug.Log("初始化游戏失败，id：" + gameId.ToString());
+            return;
+        }
+
+        RoomTfm.gameObject.SetActive(true);
+        RoomTfm.FindChild("PanelHead_/Image_Icon").GetComponent<Image>().sprite = bundle.LoadAsset<Sprite>(gamedata.GameTextIcon);
         UpdateDiamond(GameMain.hall_.GetPlayerData().GetDiamond());
     }
 
@@ -575,16 +631,16 @@ using XLua;
             obj.transform.SetParent(m_Scroll.content, false);
             obj.name = i.ToString("d2");
             deskInfo = new RoomDeskInfo();
-            deskInfo.deskTfm = obj.transform.Find("ImageBG");
+            deskInfo.deskTfm = obj.transform.FindChild("ImageBG");
             m_dictIndexDesks[i] = deskInfo;
 
-            deskInfo.deskTfm.Find("Image_table/TextNum").GetComponent<Text>().text = obj.name;
+            deskInfo.deskTfm.FindChild("Image_table/TextNum").GetComponent<Text>().text = obj.name;
             for (sbyte j = 0; j < playerNumPerDesk; j++)
             {
-                tfm = deskInfo.deskTfm.Find("Image_player_" + (j + 1));
+                tfm = deskInfo.deskTfm.FindChild("Image_player_" + (j + 1));
                 ushort desk = i;
                 sbyte sit = j;
-                tfm.Find("Button_seat").GetComponent<Button>().onClick.AddListener(() =>
+                tfm.FindChild("Button_seat").GetComponent<Button>().onClick.AddListener(() =>
                 {
                     OnClickSit(desk, sit);
                 });
@@ -604,10 +660,10 @@ using XLua;
     {
         m_ChairList.Clear();
         ChairInfo ci;
-        UnityEngine.Transform tfm = TableTfm.Find("table");
+        UnityEngine.Transform tfm = TableTfm.FindChild("table");
         for (byte i = 1; i <= deskMaxPlayerCount; i++)
         {
-            Transform child = tfm.Find("Player_" + i);
+            Transform child = tfm.FindChild("Player_" + i);
             if (child == null)
                 continue;
 
@@ -724,13 +780,15 @@ using XLua;
 
         DebugLog.Log("Click desk:" + desk + " sit:" + sit);
 
-        CCustomDialog.OpenCustomWaitUI("正在进入...");
+        CCustomDialog.OpenCustomWaitUI("正在进入...");
+
         UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_CM_APPLYENTERROOMANDSIT);
         msg.Add((byte)GameMain.hall_.GameBaseObj.GetGameType());
         msg.Add(GameMain.hall_.GetPlayerId());
         msg.Add(desk);
         msg.Add(sit);
-        HallMain.SendMsgToRoomSer(msg);    }
+        HallMain.SendMsgToRoomSer(msg);
+    }
 
     bool HandleEnterDesk(uint _msgType, UMessage _ms)
     {
@@ -819,12 +877,13 @@ using XLua;
     {
         CustomAudio.GetInstance().PlayCustomAudio(1002);
 
-        TableTfm.Find("bottom/Button_Ready").GetComponent<Button>().interactable = false;
+        TableTfm.FindChild("bottom/Button_Ready").GetComponent<Button>().interactable = false;
 
         UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_CM_APPLYREADY);
         msg.Add((byte)GameMain.hall_.GameBaseObj.GetGameType());
         msg.Add(GameMain.hall_.GetPlayerId());
-        HallMain.SendMsgToRoomSer(msg);    }
+        HallMain.SendMsgToRoomSer(msg);
+    }
 
     public void StartGame()
     {
@@ -836,7 +895,7 @@ using XLua;
     {
         if (show)
         {
-            if (!TableTfm.Find("bottom/Button_Ready").GetComponent<Button>().interactable)
+            if (!TableTfm.FindChild("bottom/Button_Ready").GetComponent<Button>().interactable)
                 return;
         }
 

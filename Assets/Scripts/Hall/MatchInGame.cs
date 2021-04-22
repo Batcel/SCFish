@@ -5,10 +5,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using USocket.Messages;
-using XLua;using DG.Tweening;
+
+using DG.Tweening;
 using UnityEngine.EventSystems;
 
-[LuaCallCSharp]
+
 public class RoundResultData
 {
     public Sprite headImg;
@@ -16,7 +17,9 @@ public class RoundResultData
     public long addCoin;
     public long coin;
     public uint playerid;
-}[LuaCallCSharp]
+}
+
+
 public enum ContestPlayerState_enum
 {
     ContestPlayerState_Gameing,     //游戏中
@@ -28,7 +31,8 @@ public enum ContestPlayerState_enum
     ContestPlayerState_end
 };
 
-[Hotfix]public class MatchInGame : MonoBehaviour
+
+public class MatchInGame : MonoBehaviour
 {
     static MatchInGame m_Instance;
     Transform ProcessTfm { get; set; }
@@ -54,28 +58,46 @@ public enum ContestPlayerState_enum
     void Awake()
     {
         CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_AdmissionDisband_NotifyPlayer, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_ContestPlayerByePromotion, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_RoundEndDeskRoleRank, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_PlayerPromotionRank, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_ContestScoreRank, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_PacketContestInfoToGameServer, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_BackDeskInfoToPlayer, HandleDeskInfo);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_BackGameingRankToPlayer, HandleRankInfo);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_UpdatePlayerRankAfterOneOver, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_RequestbuyEnterNextRoundReply, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_SeekSubstitutes, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_RequestSubstitutesReply, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_RoundTimeOverForceEndGameingDesk, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_MIDDLEENTERCONTEST, HandleMiddleEnterContest);        CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_BACKTOBEONLOOKER, HandleGameNetMsg);        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_AdmissionDisband_NotifyPlayer, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_ContestPlayerByePromotion, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_RoundEndDeskRoleRank, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_PlayerPromotionRank, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_ContestScoreRank, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_PacketContestInfoToGameServer, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_BackDeskInfoToPlayer, HandleDeskInfo);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_BackGameingRankToPlayer, HandleRankInfo);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_UpdatePlayerRankAfterOneOver, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_RequestbuyEnterNextRoundReply, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_SeekSubstitutes, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_RequestSubstitutesReply, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.ContestMsg_RoundTimeOverForceEndGameingDesk, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_SM_MIDDLEENTERCONTEST, HandleMiddleEnterContest);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
+            (uint)GameCity.EMSG_ENUM.CrazyCityMsg_BACKTOBEONLOOKER, HandleGameNetMsg);
+        CMsgDispatcher.GetInstance().RegMsgDictionary(
             (uint)GameCity.EMSG_ENUM.Contestmsg_AnyTimeContestCurPlayerCount, HandleGameNetMsg);
         CMsgDispatcher.GetInstance().RegMsgDictionary(
-            (uint)GameCity.EMSG_ENUM.ContestMsg_CommandContestDisband, HandleGameNetMsg);    }
+            (uint)GameCity.EMSG_ENUM.ContestMsg_CommandContestDisband, HandleGameNetMsg);
+    }
 
     private void Update()
     {
-        if (contestTimeLeft > 0)            contestTimeLeft -= Time.deltaTime;    }
+        if (contestTimeLeft > 0)
+            contestTimeLeft -= Time.deltaTime;
+    }
 
     void Init()
     {
@@ -165,7 +187,15 @@ public enum ContestPlayerState_enum
         yield return null;
     }
 
-    public static MatchInGame GetInstance()    {        if (m_Instance == null)            m_Instance = GameMain.Instance.gameObject.AddComponent<MatchInGame>();        m_Instance.Init();        return m_Instance;    }
+    public static MatchInGame GetInstance()
+    {
+        if (m_Instance == null)
+            m_Instance = GameMain.Instance.gameObject.AddComponent<MatchInGame>();
+
+        m_Instance.Init();
+
+        return m_Instance;
+    }
 
     void OnTotalEnd()
     {
@@ -205,11 +235,16 @@ public enum ContestPlayerState_enum
         {
             OnTotalEnd();
         }
-        else            CCustomDialog.OpenCustomDialogWithTipsID(1603, Giveup);    }
+        else
+            CCustomDialog.OpenCustomDialogWithTipsID(1603, Giveup);
+    }
 
     void Giveup(object param)
     {
-        if (param != null && (int)param == 0)            return;        UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.ContestMsg_PlayerExitContest);
+        if (param != null && (int)param == 0)
+            return;
+
+        UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.ContestMsg_PlayerExitContest);
         msg.Add(GameMain.hall_.GetPlayerId());
         msg.Add(ContestDataManager.Instance().currentContestID);
         NetWorkClient.GetInstance().SendMsg(msg);
@@ -427,7 +462,10 @@ public enum ContestPlayerState_enum
         Image img = tfm.Find("rankingBg/Image_ranking/Image_HeadBG/Image_HeadMask/Image_HeadImage").GetComponent<Image>();
         img.sprite = GameMain.hall_.GetPlayerIcon();
 
-        img = tfm.Find("ImagelineBG/Imageline").GetComponent<Image>();        img.fillAmount = 0f;        AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);
+        img = tfm.Find("ImagelineBG/Imageline").GetComponent<Image>();
+        img.fillAmount = 0f;
+
+        AssetBundle bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallAssetbundleName);
         GameObject obj = (GameObject)bundle.LoadAsset("Contest_Result_Q");
         RankEffectObj = Instantiate(obj);
         RankEffectObj.name = "effect";
@@ -804,7 +842,14 @@ public enum ContestPlayerState_enum
         }
 
         DragonBones.UnityArmatureComponent animate = obj.GetComponent<DragonBones.UnityArmatureComponent>(); ;
-        animate.animation.Play("zhankai");        yield return new WaitUntil(() => animate.animation.isCompleted);        animate.animation.Play("idle");        yield return null;        tfm = ResultTfm.Find("ImageBG_ItemTips/ItemBG");
+        animate.animation.Play("zhankai");
+
+        yield return new WaitUntil(() => animate.animation.isCompleted);
+        animate.animation.Play("idle");
+
+        yield return null;
+
+        tfm = ResultTfm.Find("ImageBG_ItemTips/ItemBG");
         foreach (Transform child in tfm)
             Destroy(child.gameObject);
         tfm.gameObject.SetActive(false);
@@ -815,7 +860,8 @@ public enum ContestPlayerState_enum
 
         bundle = AssetBundleManager.GetAssetBundle(GameDefine.HallBagIconAssetBundleName);
 
-        bool bReward = false;        if(rrd.fMasterReward > 0)//大师分
+        bool bReward = false;
+        if(rrd.fMasterReward > 0)//大师分
         {
             obj = Instantiate(assetObj);
             obj.transform.SetParent(tfm, false);
@@ -886,7 +932,8 @@ public enum ContestPlayerState_enum
 
     public bool HandleGameNetMsg(uint _msgType, UMessage _ms)
     {
-        GameCity.EMSG_ENUM eMsg = (GameCity.EMSG_ENUM)_msgType;        switch (eMsg)
+        GameCity.EMSG_ENUM eMsg = (GameCity.EMSG_ENUM)_msgType;
+        switch (eMsg)
         {
             case GameCity.EMSG_ENUM.ContestMsg_PacketContestInfoToGameServer:
                 {
@@ -1012,7 +1059,8 @@ public enum ContestPlayerState_enum
                     uint contestId = _ms.ReadUInt();
                     CCustomDialog.OpenCustomDialogWithTimer(1026, 10, (param) =>
                     {
-                        int isagree = (int)param;                        if(isagree > 0)
+                        int isagree = (int)param;
+                        if(isagree > 0)
                         {
                             UMessage msg = new UMessage((uint)GameCity.EMSG_ENUM.ContestMsg_RequestSubstitutes);
                             msg.Add(GameMain.hall_.GetPlayerId());
@@ -1350,7 +1398,9 @@ public enum ContestPlayerState_enum
         tfm.Find("TextRanking").GetComponent<Text>().text = str;
         tfm.Find("TextName").GetComponent<Text>().text = pd.GetPlayerName();
         tfm.Find("TextGrade").GetComponent<Text>().text = selfScore.ToString();
-        Image img = tfm.Find("Image_HeadBG/Image_HeadMask/Image_HeadImage").GetComponent<Image>();        img.sprite = GameMain.hall_.GetIcon(pd.GetPlayerIconURL(), GameMain.hall_.GetPlayerId(), (int)pd.PlayerIconId);
+        Image img = tfm.Find("Image_HeadBG/Image_HeadMask/Image_HeadImage").GetComponent<Image>();
+        img.sprite = GameMain.hall_.GetIcon(pd.GetPlayerIconURL(), GameMain.hall_.GetPlayerId(), (int)pd.PlayerIconId);
+
         return true;
     }
 
@@ -1358,7 +1408,8 @@ public enum ContestPlayerState_enum
     {
         CCustomDialog.OpenCustomConfirmUI(tipsID, (param) =>
         {
-            OnTotalEnd();        });
+            OnTotalEnd();
+        });
     }
 
     bool HandleMiddleEnterContest(uint _msgType, UMessage _ms)

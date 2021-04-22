@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using USocket.Messages;
-using XLua;
 
-[LuaCallCSharp]
+
+
 public enum LockFishState
 {
     LFS_None,
@@ -17,7 +17,7 @@ public enum LockFishState
 };
 
 
-[Hotfix]
+
 public class Fishing_Role
 {
     byte m_nIndex;

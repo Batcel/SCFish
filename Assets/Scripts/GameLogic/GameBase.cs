@@ -3,17 +3,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using USocket.Messages;
-using XLua;
+
 
 /// <summary>
 /// ÓÎÏ·»ùÀà
 /// </summary>
-[LuaCallCSharp]
+
 public class CGameBase
 {
     public GameKind_Enum GameType;
     public GameTye_Enum GameMode { get; set; }
-    public bool Bystander { get; set; }
+    public bool Bystander { get; set; }
+
     public CGameBase()
     {
         GameType = GameKind_Enum.GameKind_None;

@@ -4,7 +4,7 @@ using SWS;
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine.Events;
-using XLua;
+
 
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Core.PathCore;
@@ -13,14 +13,16 @@ using DG.Tweening.Plugins.Options;
 using PathFishList = System.Collections.Generic.Dictionary<SWS.PathManager, PathInfo>;
 using System.Linq;
 
-[LuaCallCSharp]public class PathInfo
+
+public class PathInfo
 {
     public float speed;
     public float time;
     public List<Fishing_Fish> fishList;
 }
 
-[Hotfix]public class Fishing_FishMgr
+
+public class Fishing_FishMgr
 {
     CGame_Fishing m_GameBase;
     WaypointManager m_WaypointMgr;

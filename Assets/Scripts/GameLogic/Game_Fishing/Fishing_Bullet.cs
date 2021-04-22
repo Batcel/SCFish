@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using XLua;
+
 using USocket.Messages;
 
-[Hotfix]
+
 public class Fishing_Bullet : MonoBehaviour {
 
     //移动速度

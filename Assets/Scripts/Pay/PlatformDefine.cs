@@ -1,7 +1,12 @@
-using UnityEngine;using XLua;
+using UnityEngine;
 
 
-/// <summary>/// 平台相关信息定义/// </summary>[LuaCallCSharp]public class PayPlatformDefine
+
+/// <summary>
+/// 平台相关信息定义
+/// </summary>
+
+public class PayPlatformDefine
 {
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
     //微信网页应用

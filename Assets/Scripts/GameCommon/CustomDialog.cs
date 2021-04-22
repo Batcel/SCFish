@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using XLua;
+
 /// <summary>
 /// ͨ����ʾ����
 /// </summary>
-[LuaCallCSharp]
+
 public class CCustomDialog
 {
     public delegate void CallBackFunc(object pragma);

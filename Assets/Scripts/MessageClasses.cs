@@ -819,7 +819,7 @@ public class ForestDanceRoomData : ForestDanceMessageBase
 {
     public ForestDanceRoomData()
     {
-        chipsinfo = new Dictionary<int, ChipsData>();
+        //chipsinfo = new Dictionary<int, ChipsData>();
         histroyinfo = new List<ushort>();
         colorsort = new List<byte>();
     }
@@ -840,7 +840,7 @@ public class ForestDanceRoomData : ForestDanceMessageBase
         for(int index = 0; index < chipslength; index++)
         {
             byte chipIndex = msg.ReadByte();
-            if(chipsinfo.ContainsKey(chipIndex))
+            /*if(chipsinfo.ContainsKey(chipIndex))
             {
                 chipsinfo[chipIndex].selfchip = msg.ReadLong();
                 chipsinfo[chipIndex].totalchip = msg.ReadLong();
@@ -853,7 +853,7 @@ public class ForestDanceRoomData : ForestDanceMessageBase
                 data.totalchip = msg.ReadLong();
 
                 chipsinfo.Add(data.chipIndex, data);
-            }
+            }*/
         }
 
         for(int index = 0; index < histroylength; index++)
@@ -873,7 +873,7 @@ public class ForestDanceRoomData : ForestDanceMessageBase
     public int colorid;
     public int roomState;
     public float lefttime;
-    public Dictionary<int, ChipsData> chipsinfo;
+    //public Dictionary<int, ChipsData> chipsinfo;
     public List<ushort> histroyinfo;
     public List<byte> colorsort;
 }
@@ -1498,8 +1498,8 @@ public class BAKResultMsg
         for(byte index = 0; index < vipNum; index++)
         {
             byte sitNo = msg.ReadByte();
-            BAK_DataCenter.Instance().ber.vipSeatInfos[sitNo].playerid = msg.ReadUInt();
-            BAK_DataCenter.Instance().ber.vipSeatInfos[sitNo].money = msg.ReadLong();
+            //BAK_DataCenter.Instance().ber.vipSeatInfos[sitNo].playerid = msg.ReadUInt();
+            //BAK_DataCenter.Instance().ber.vipSeatInfos[sitNo].money = msg.ReadLong();
         }
 
         byte sortLen = msg.ReadByte();
