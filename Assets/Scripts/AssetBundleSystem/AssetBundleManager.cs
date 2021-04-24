@@ -94,7 +94,7 @@
         }
 #endif
 
-        if (dictAssetBundleRefs.ContainsKey(abname))        {            //Debug.Log("重复加载assetbundle,name:" + abname);            return true;        }        if (!File.Exists(path+abname))        {            Debug.Log("加载的Assetbundle文件不存在" + abname);            return false;        }        //加载依赖资源        LoadDependenciesAssetBundle(abname);        //Debug.Log("加载bundle名称:" + abname+" 开始:" + DateTime.Now.Ticks);        AssetBundle bundle = AssetBundle.LoadFromFile(path + abname);        if (bundle == null)           return false;        //AssetBundleCreateRequest abcr = AssetBundle.LoadFromFileAsync(path);
+        if (dictAssetBundleRefs.ContainsKey(abname))        {            //Debug.Log("重复加载assetbundle,name:" + abname);            return true;        }        if (!File.Exists(path+abname))        {            //Debug.Log("加载的Assetbundle文件不存在" + abname);            return false;        }        //加载依赖资源        LoadDependenciesAssetBundle(abname);        //Debug.Log("加载bundle名称:" + abname+" 开始:" + DateTime.Now.Ticks);        AssetBundle bundle = AssetBundle.LoadFromFile(path + abname);        if (bundle == null)           return false;        //AssetBundleCreateRequest abcr = AssetBundle.LoadFromFileAsync(path);
         //return abcr;
         //callback(abcr.assetBundle);
 
