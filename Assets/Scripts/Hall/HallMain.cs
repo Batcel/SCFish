@@ -2906,15 +2906,7 @@ public class HallMain
     {
 #if ScFish
         CanvasObj = GameObject.Find("Canvas/Root");
-        //gSceneLoadProgressLandscapeUI = CanvasObj.transform.FindChild("Main_Loading").gameObject;
-        if (gSceneLoadProgressPortraitUI == null)
-        {
-            UnityEngine.Object obj0 = Resources.Load("Prefabs/Main_Loading_shuping");
-            gSceneLoadProgressPortraitUI = (GameObject)GameMain.instantiate(obj0);
-            gSceneLoadProgressPortraitUI.transform.SetParent(CanvasObj.transform, false);
-            gSceneLoadProgressPortraitUI.transform.SetAsFirstSibling();
-        }
-        gCurDisplayLoadSceneProgressUI = gSceneLoadProgressPortraitUI;
+        gCurDisplayLoadSceneProgressUI = CanvasObj.transform.Find("Main_Loading").gameObject; 
         enGameState = GameState_Enum.GameState_Hall;
         PlayerObj.ChangeRequestEnterGameState(false);
         return;
