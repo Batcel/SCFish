@@ -5,7 +5,9 @@
 #if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !WINDOWS_GUEST
 #if !ScFish       loginPanel.SetActive(false);
 #endif        RequestLogin(LoginType.LoginTyee_WechatQRCode);
-#elif UNITY_EDITOR || (UNITY_STANDALONE_WIN && WINDOWS_GUEST)        RequestLogin();#else        //ios 审核版本下要显示游客登陆按钮        if (Luancher.IsReviewVersion && Application.platform == RuntimePlatform.IPhonePlayer)        {            loginPanel.transform.Find("Button_TouristLogin").gameObject.SetActive(true);            //审核版本下微信未安装直接不显示微信登陆按钮（以免审核人员以登陆不应依赖第三方应用拒绝）
+#elif UNITY_EDITOR || (UNITY_STANDALONE_WIN && WINDOWS_GUEST)        RequestLogin();#else        //ios 审核版本下要显示游客登陆按钮        if (Luancher.IsReviewVersion && Application.platform == RuntimePlatform.IPhonePlayer)        {
+#if !ScFish           loginPanel.transform.Find("Button_TouristLogin").gameObject.SetActive(true);
+#endif            //审核版本下微信未安装直接不显示微信登陆按钮（以免审核人员以登陆不应依赖第三方应用拒绝）
 #if UNITY_IOS && !UNITY_EDITOR            if (!WechatPlatfrom_IOS.WeChat_IsWXAppInstalled())            {              loginPanel.transform.FindChild("Button_PhoneLogin").gameObject.SetActive(false);            }
 #endif        }
 #endif
@@ -21,6 +23,60 @@
 #endif        //GameMain.hall_.LoadHallResource();        if (playerdata.nGameMode_Before >= 0)        {            Debug.Log("断线重连GameId:" + playerdata.nGameKind_Before + ",GameMode:" + playerdata.nGameMode_Before);            string strSign = string.Empty;            GameKind_Enum CurbeforeGameKind = (GameKind_Enum)playerdata.nGameKind_Before;            if (playerdata.nGameMode_Before == 0)            {                CurbeforeGameKind = (GameKind_Enum)(Mathf.Log(playerdata.nGameKind_Before, 2));                for(GameKind_Enum gameKind = GameKind_Enum.GameKind_CarPort; gameKind < GameKind_Enum.GameKind_Max; ++gameKind)                {                    if(gameKind != GameKind_Enum.GameKind_LandLords && gameKind != GameKind_Enum.GameKind_Mahjong &&                       gameKind != GameKind_Enum.GameKind_GuanDan && gameKind != GameKind_Enum.GameKind_YcMahjong &&                       gameKind != GameKind_Enum.GameKind_CzMahjong && gameKind != GameKind_Enum.GameKind_GouJi &&                       gameKind != GameKind_Enum.GameKind_HongZhong && gameKind != GameKind_Enum.GameKind_Answer &&                       gameKind != GameKind_Enum.GameKind_Chess)                    {                        if (GameKind.HasFlag((int)gameKind, (int)playerdata.nGameKind_Before))                        {                            GameData gamedata = CCsvDataManager.Instance.GameDataMgr.GetGameData((byte)CurbeforeGameKind);                            if (gamedata != null)                            {                                strSign += gamedata.GameName;                            }else                            {                                strSign += "未知游戏";                            }                        }                    }                }            }            if (!string.IsNullOrEmpty(strSign))            {                CCustomDialog.OpenCustomWaitUI(2014, strSign);            }            else            {                if(GameMain.hall_.contestui_)                {                    GameMain.hall_.contestui_.SetActive(false);                }                GameMain.hall_.ReconnectLoadGame(CurbeforeGameKind, (GameTye_Enum)playerdata.nGameMode_Before);            }        }        else        {            if (Application.platform == RuntimePlatform.Android)            {
 #if UNITY_ANDROID && !UNITY_EDITOR                AlipayWeChatPay.GetAndroidActivity().Call("GetGameRoomID");               
 #endif            }        }        GameMain.hall_.ReconnectGameServer();        UMessage activemsg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_GETTODAYREDBAGINFO);        activemsg.Add(GameMain.hall_.GetPlayerId());        NetWorkClient.GetInstance().SendMsg(activemsg);        BagDataManager.GetBagDataInstance();        if (GameMain.hall_.GetPlayerData().itemNumber > 0)        {            UMessage bagmsg = new UMessage((uint)GameCity.EMSG_ENUM.CrazyCityMsg_REQUESTPLAYERPACKETINFO);            bagmsg.Add(GameMain.hall_.GetPlayerId());            NetWorkClient.GetInstance().SendMsg(bagmsg);        }        PlayerInfoUI.Instance.Ask4PlayerTotalData();        return true;    }    private bool PlayerMasterScore(uint _msgType, UMessage _ms)    {        uint nUseid = _ms.ReadUInt();        byte nNum = _ms.ReadByte();        byte nKind = 0;        float nScore = 0.0f;        for(int i=0; i<nNum; i++)        {            nKind = _ms.ReadByte();            nScore = _ms.ReadSingle();            GameMain.hall_.GetPlayerData().MasterScoreKindArray[nKind] = nScore;            Debug.Log("第一个登陆 获取玩家大师分 nKind:" + nKind + " nScore:" + nScore);        }        return true;    }    /// <summary>    /// 登陆失败返回消息处理    /// </summary>    /// <param name="_msgType"></param>    /// <param name="_ms"></param>    /// <returns></returns>    private bool LoginFailed(uint _msgType, UMessage _ms)    {        CCustomDialog.CloseCustomWaitUI();        byte errState = _ms.ReadByte();        switch(errState)        {            //app版本不符            case 1:                {                    CCustomDialog.OpenCustomConfirmUI(1019);                }                break;        }        return true;    }    private bool LoginFailed2(uint _msgType, UMessage _ms)    {        byte errState = _ms.ReadByte();        switch (errState)        {            //被封号            case 1:                {                    CCustomDialog.OpenCustomConfirmUI(1023);                }                break;        }        return true;    }    bool BackCheckMobileLogin(uint _msgType, UMessage _ms)    {        //1获取成功        // 2改账号已经有绑定手机        // 3该手机号已经绑定账号        byte nState = _ms.ReadByte();        if (nState == 1)        {            Debug.Log("该手机号没有绑定任何号");        }        else if (nState == 2)        {            //Debug.Log("该账号已经有绑定手机");            CCustomDialog.OpenCustomConfirmUI(1009);        }        else if (nState == 3)        {            Debug.Log("该手机号已经绑定账号");            CCustomDialog.OpenCustomConfirmUI(1005);            PlayerInfoUI.Instance.HandleBindMobileResult(false);        }        return true;    }    /// <summary>    /// 设置游客状态的账号ID    /// </summary>    public void SetVisitorAccountId(uint Id)    {        VisitorAccountId = Id;    }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
